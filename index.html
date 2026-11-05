@@ -3,291 +3,255 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Octave — Gérez votre entreprise, du devis au chantier</title>
-<meta name="octave-build" content="2026-11-05-refonte-anthracite-cuivre">
-<meta name="description" content="Octave réunit devis, factures, clients, chantiers, photos et prise de cote dans une seule solution pensée pour les professionnels du terrain.">
+<title>Octave — La gestion qui suit votre activité</title>
+<meta name="description" content="Octave réunit devis, factures, clients, chantiers, photos et prise de cote dans une expérience simple pensée pour les professionnels du terrain.">
 <style>
 :root{
-  --site-primary:#B8733E;
-  --site-secondary:#25272A;
-  --site-background:#F4F5F6;
-  --site-on-primary:#FFFFFF;
-  --site-on-secondary:#FFFFFF;
-  --site-on-background:#1D2023;
-  --copper:#B8733E;
-  --copper-light:#D79A68;
-  --copper-pale:#F1E3D7;
-  --anth:#25272A;
-  --anth-2:#181A1C;
-  --aluminium:#D9DDE0;
-  --aluminium-light:#F4F5F6;
-  --white:#FFFFFF;
-  --ink:#1D2023;
-  --muted:#697077;
-  --line:#DDE1E4;
-  --max:1180px;
-  --radius:20px;
-  --site-font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --site-font-heading:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --site-heading-scale:1;
-  --site-spacing-scale:1;
-  --site-radius-scale:1;
-  --site-decoration-opacity:1;
-  --shadow:0 24px 70px rgba(24,26,28,.12);
+  --ink:#202326;
+  --ink-2:#2c3033;
+  --muted:#6f767b;
+  --paper:#f7f7f5;
+  --white:#fff;
+  --silver:#e5e7e7;
+  --silver-2:#cfd3d4;
+  --copper:#b86f3f;
+  --copper-2:#d39a6d;
+  --copper-3:#8e4f2d;
+  --dark:#202326;
+  --dark-2:#151718;
+  --max:1240px;
+  --radius:18px;
+  --shadow:0 22px 70px rgba(27,30,32,.09);
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--site-font-body);color:var(--site-on-background);background:var(--site-background);line-height:1.65;-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:calc(.035 * var(--site-decoration-opacity));background:repeating-linear-gradient(105deg,transparent 0 4px,rgba(255,255,255,.45) 5px,transparent 6px 13px)}
-a{text-decoration:none;color:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.16;background:repeating-linear-gradient(112deg,transparent 0 8px,rgba(0,0,0,.035) 9px,transparent 10px 18px)}
+a{color:inherit;text-decoration:none}
 button{font:inherit}
-.container{width:min(var(--max),calc(100% - 44px));margin:auto}
-.nav{position:sticky;top:0;z-index:50;background:rgba(37,39,42,.96);border-bottom:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px)}
-.nav-inner{min-height:78px;display:flex;align-items:center;gap:34px}
-.brand{display:flex;align-items:center;flex:0 0 auto}
-.brand img{display:block;width:142px;height:auto;max-height:44px;object-fit:contain}
-.nav-links{display:flex;align-items:center;justify-content:center;gap:30px;flex:1}
-.nav-links a{font-size:14px;color:#D9DDE0;transition:.2s}
-.nav-links a:hover{color:#fff}
-.nav-actions{display:flex;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-weight:700;font-size:14px;letter-spacing:-.01em;transition:transform .18s,box-shadow .18s,background .18s,border-color .18s}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{color:#fff;background:linear-gradient(135deg,#9D5B30 0%,#C9854F 45%,#A96538 100%);border-color:#D79A68;box-shadow:0 10px 28px rgba(184,115,62,.25)}
-.btn-primary:hover{box-shadow:0 14px 34px rgba(184,115,62,.34)}
-.btn-light{color:#24272A;background:#fff;border-color:#D8DDE0}
-.btn-dark{color:#fff;background:#25272A;border-color:#3D4145}
-.hero{position:relative;overflow:hidden;background:#fff;border-bottom:1px solid #E2E4E6}
-.hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 82% 28%,rgba(184,115,62,.13),transparent 28%),linear-gradient(115deg,rgba(217,221,224,.32),transparent 35%)}
-.hero-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:88px 0 84px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid #D8C0AE;border-radius:999px;background:#FBF8F5;color:#7B4C30;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-.dot{width:7px;height:7px;border-radius:50%;background:#B8733E;box-shadow:0 0 0 4px rgba(184,115,62,.13)}
-h1,h2,h3{font-family:var(--site-font-heading);letter-spacing:-.045em;line-height:1.02;margin:0}
-h1{font-size:clamp(54px,6vw,82px);font-weight:800;margin-top:25px;max-width:720px}
-h1 span{display:block;color:#B8733E}
-.lead{max-width:680px;color:#5E666C;font-size:18px;line-height:1.75;margin:25px 0 30px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:25px;color:#697077;font-size:12px}
-.trust b{color:#B8733E;margin-right:5px}
-.hero-card{position:relative}
-.dashboard{position:relative;background:linear-gradient(145deg,#191B1D,#292B2E);border:1px solid #414449;border-radius:26px;box-shadow:0 34px 90px rgba(20,22,24,.24);overflow:hidden}
-.window{height:40px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:7px;padding:0 15px}
-.window i{width:8px;height:8px;border-radius:50%;background:#6D7073}
-.dashboard-body{display:grid;grid-template-columns:112px 1fr;min-height:515px}
-.sidebar{padding:25px 13px;border-right:1px solid rgba(255,255,255,.08)}
-.brand-mini{font-size:13px;font-weight:800;color:#fff;margin:0 8px 28px}
-.nav-mini{font-size:10px;color:#969B9F;padding:10px 9px;border-radius:9px;margin-bottom:5px}
-.nav-mini.active{color:#F0C5A4;background:rgba(184,115,62,.18);border:1px solid rgba(184,115,62,.35)}
-.dash-main{padding:28px 25px}
-.dash-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
-.dash-title{font-size:18px;color:#F5F5F4;font-weight:750}
-.dash-sub{font-size:10px;color:#7E8489;margin-top:5px}
-.status{font-size:9px;color:#D9A579;border:1px solid rgba(184,115,62,.45);border-radius:999px;padding:7px 10px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
-.stat{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.025)}
-.stat small{display:block;color:#8A8F93;font-size:8px}
-.stat strong{display:block;color:#F6F5F3;font-size:20px;margin-top:8px}
-.stat em{display:block;color:#8EB08F;font-style:normal;font-size:8px;margin-top:3px}
-.chart{margin-top:12px;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.02)}
-.chart-head{display:flex;justify-content:space-between;color:#8A8F93;font-size:8px}
-.bars{height:135px;display:flex;align-items:end;gap:10px;padding:18px 10px 0}
-.bars i{display:block;flex:1;border-radius:4px 4px 0 0;background:linear-gradient(#DDA171,#82502F);box-shadow:inset 0 1px rgba(255,255,255,.2)}
-.activity{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.activity>div{padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:13px}
-.activity small{color:#8A8F93;font-size:8px}
-.row{display:flex;justify-content:space-between;gap:8px;color:#D4D6D7;font-size:9px;padding-top:11px}
-.row b{color:#D79A68;font-weight:700}
-.section{padding:105px 0}
-.section.white{background:#fff}
-.section.silver{background:linear-gradient(180deg,#EEF0F1 0%,#F8F9F9 100%);border-top:1px solid #DDE1E4;border-bottom:1px solid #DDE1E4}
-.section.dark{background:linear-gradient(135deg,#25272A,#17191B);color:#fff}
-.section-head{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:end;margin-bottom:48px}
-.kicker{color:#A45F34;font-size:11px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px}
-.section.dark .kicker{color:#D79A68}
-h2{font-size:clamp(38px,4vw,58px);font-weight:800;color:var(--ink)}
-.section.dark h2{color:#fff}
-.section-intro{margin:0;color:#687077;font-size:16px;line-height:1.8;max-width:560px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.feature{padding:29px;border:1px solid #DDE1E4;border-radius:18px;background:linear-gradient(180deg,#fff,#F7F8F8);box-shadow:0 10px 30px rgba(30,33,36,.045);min-height:230px}
-.feature:hover{border-color:#C99570;transform:translateY(-3px);transition:.2s}
-.icon{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,#25272A,#3A3D40);color:#D79A68;font-weight:800;margin-bottom:22px}
-.feature h3{font-size:20px;color:#24272A;margin-bottom:9px}
-.feature p{font-size:14px;color:#6C747A;line-height:1.7;margin:0}
-.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:center}
-.copy h2{max-width:610px}
-.copy>p{color:#687077;font-size:16px;line-height:1.85;max-width:580px;margin:24px 0}
-.checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
-.check{display:flex;gap:10px;align-items:flex-start;color:#4F575D;font-size:13px}
-.check i{font-style:normal;color:#B8733E;font-weight:800}
-.phone-zone{min-height:510px;position:relative;display:grid;place-items:center}
-.phone-zone:before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,#DDE1E4 0%,rgba(221,225,228,.35) 42%,transparent 70%)}
-.phone{position:relative;width:245px;height:485px;padding:9px;border:6px solid #242629;border-radius:38px;background:#111315;box-shadow:0 35px 70px rgba(26,29,31,.24)}
-.phone:before{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:80px;height:18px;border-radius:0 0 12px 12px;background:#242629}
-.screen{height:100%;border-radius:28px;overflow:hidden;background:#F7F8F8;padding:32px 15px 15px}
-.mobile-logo{font-size:12px;font-weight:900;color:#B8733E}
-.mobile-title{font-size:17px;font-weight:800;color:#25272A;margin:8px 0 14px}
-.mobile-card{background:#fff;border:1px solid #E0E3E5;border-radius:13px;padding:12px;margin-bottom:10px;box-shadow:0 7px 18px rgba(40,44,48,.06)}
-.mobile-card small{display:block;color:#8B9297;font-size:7px;letter-spacing:.08em}
-.mobile-card strong{display:block;color:#282B2E;font-size:11px;margin-top:5px}
-.photo{height:100px;margin-top:10px;border-radius:9px;background:linear-gradient(135deg,#9A9EA0,#D4D6D7 48%,#A4A8AA);position:relative;overflow:hidden}
-.photo:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 6px,rgba(255,255,255,.18) 7px,transparent 9px)}
-.measure{position:absolute;left:20px;right:20px;top:48px;border-top:2px solid #B8733E}
-.float{position:absolute;z-index:2;background:#fff;border:1px solid #D9DEE1;border-radius:13px;padding:13px 15px;box-shadow:0 18px 35px rgba(35,38,41,.12);font-size:10px;color:#72797E}
-.float strong{display:block;color:#2A2D30;font-size:12px;margin-bottom:2px}
-.f1{top:85px;right:0}
-.f2{bottom:45px;left:0}
-.process{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #DDE1E4}
-.step{padding:30px 24px 0;border-right:1px solid #DDE1E4}
-.step:first-child{padding-left:0}
-.step:last-child{border-right:0}
-.step-num{font-size:12px;color:#B8733E;font-weight:850;margin-bottom:24px}
-.step h3{font-size:22px;margin-bottom:10px}
-.step p{font-size:13px;color:#6A7278;line-height:1.7;margin:0}
-.electro{max-width:880px}
-.electro h2{max-width:800px}
-.electro p{color:#BFC3C6;font-size:16px;line-height:1.85;max-width:760px;margin:24px 0}
-.badge{display:inline-flex;padding:8px 12px;border:1px solid rgba(215,154,104,.35);background:rgba(184,115,62,.12);color:#D79A68;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.formats{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
-.format{padding:10px 13px;border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#E0E2E3;font-size:11px;background:rgba(255,255,255,.03)}
-.quote-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:20px}
-.quote,.metric{border-radius:20px;border:1px solid #DDE1E4;background:#fff;padding:40px}
-.quote{background:linear-gradient(135deg,#fff,#F0F2F3)}
-.quote p{font-size:25px;line-height:1.35;letter-spacing:-.03em;margin:0;color:#2B2E31}
-.quote small{display:block;margin-top:25px;color:#727A80}
-.metric{display:flex;flex-direction:column;justify-content:center;background:#25272A;color:#fff;border-color:#3A3D40}
-.metric strong{font-size:74px;color:#D79A68;line-height:1}
-.metric span{margin-top:13px;color:#B9BEC2;font-size:13px}
-.pricing{background:linear-gradient(180deg,#EEF0F1 0%,#FAFAFA 100%);border-top:1px solid #DDE1E4}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-.plan{position:relative;padding:31px;border:1px solid #D9DEE1;border-radius:20px;background:#fff;box-shadow:0 12px 34px rgba(32,35,38,.05);display:flex;flex-direction:column}
-.plan.pro{border:2px solid #B8733E;box-shadow:0 20px 50px rgba(184,115,62,.13)}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.header{position:sticky;top:0;z-index:100;background:rgba(27,29,30,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
+.header-inner{height:76px;display:flex;align-items:center;gap:36px}
+.logo{display:flex;align-items:center;width:145px;flex:none}
+.logo img{width:100%;height:auto;max-height:43px;object-fit:contain;object-position:left center}
+.nav{display:flex;justify-content:center;gap:30px;flex:1}
+.nav a{font-size:13px;color:#c9cdce;transition:color .2s ease}
+.nav a:hover{color:#fff}
+.header-actions{display:flex;gap:10px;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:47px;padding:0 19px;border-radius:10px;border:1px solid transparent;font-size:13px;font-weight:700;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-copper{color:#fff;background:linear-gradient(135deg,#9c5a31,#c17b4b 48%,#9b592f);border-color:#d19a70;box-shadow:0 12px 30px rgba(184,111,63,.22)}
+.btn-copper:hover{box-shadow:0 17px 38px rgba(184,111,63,.31)}
+.btn-outline{color:#25282a;background:#fff;border-color:#d8dbdc}
+.btn-outline-dark{color:#fff;background:transparent;border-color:rgba(255,255,255,.18)}
+.hero{background:var(--white);border-bottom:1px solid #e0e2e2}
+.hero-inner{min-height:760px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:72px;padding:78px 0 92px}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--copper-3);font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.kicker:before{content:"";width:24px;height:1px;background:var(--copper)}
+h1,h2,h3{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.045em}
+h1{font-size:clamp(50px,6.4vw,82px);line-height:.99;font-weight:750;margin:23px 0 26px;max-width:760px}
+h1 em{font-style:normal;color:var(--copper)}
+.lead{font-size:17px;line-height:1.85;color:var(--muted);max-width:660px;margin:0 0 31px}
+.actions{display:flex;gap:11px;flex-wrap:wrap}
+.microproof{display:flex;gap:26px;flex-wrap:wrap;margin-top:27px;color:#7a8084;font-size:11px}
+.microproof span:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--copper);margin:0 8px 2px 0}
+.hero-visual{position:relative}
+.app-frame{background:#191b1c;border:1px solid #3a3d3f;border-radius:22px;box-shadow:0 38px 100px rgba(24,26,27,.22);overflow:hidden;transform:perspective(1400px) rotateY(-3deg)}
+.frame-top{height:42px;display:flex;align-items:center;gap:7px;padding:0 15px;border-bottom:1px solid rgba(255,255,255,.07)}
+.frame-top i{width:7px;height:7px;border-radius:50%;background:#666a6b}
+.app{display:grid;grid-template-columns:120px 1fr;min-height:500px}
+.app-side{padding:24px 12px;border-right:1px solid rgba(255,255,255,.07)}
+.app-name{color:#fff;font-weight:800;font-size:12px;margin:0 9px 26px}
+.app-nav{font-size:9px;color:#858a8c;padding:9px 9px;border-radius:8px;margin-bottom:4px}
+.app-nav.active{color:#e7bd9d;background:rgba(184,111,63,.14);border:1px solid rgba(184,111,63,.28)}
+.app-main{padding:28px}
+.app-head{display:flex;justify-content:space-between;gap:20px}
+.app-head strong{font-size:18px;color:#f6f5f3}
+.app-head small{display:block;color:#7c8184;font-size:9px;margin-top:4px}
+.live{font-size:8px;color:#d6a07a;border:1px solid rgba(184,111,63,.4);padding:7px 10px;border-radius:100px;height:max-content}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:23px}
+.kpi{padding:15px;border:1px solid rgba(255,255,255,.075);border-radius:12px;background:rgba(255,255,255,.025)}
+.kpi small{display:block;color:#858a8c;font-size:7px}
+.kpi strong{display:block;color:#f6f5f3;font-size:20px;margin-top:6px;letter-spacing:-.04em}
+.kpi span{display:block;color:#8eaa90;font-size:7px;margin-top:3px}
+.chart{margin-top:10px;border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:15px}
+.chart-top{display:flex;justify-content:space-between;color:#858a8c;font-size:7px}
+.bars{height:150px;display:flex;align-items:end;gap:10px;padding:18px 7px 0}
+.bars i{flex:1;display:block;background:linear-gradient(180deg,#d59a6b,#81502f);border-radius:4px 4px 0 0}
+.lower{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.lower>div{border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:14px}
+.lower small{color:#858a8c;font-size:7px}
+.lower p{display:flex;justify-content:space-between;color:#d0d2d2;font-size:8px;margin:10px 0 0}
+.lower b{color:#d39a6d}
+.section{padding:108px 0}
+.section-white{background:#fff}
+.section-silver{background:linear-gradient(135deg,#eef0ef,#fafafa);border-top:1px solid #dfe2e2;border-bottom:1px solid #dfe2e2}
+.section-dark{background:linear-gradient(135deg,#25282a 0%,#17191a 100%);color:#fff}
+.section-head{display:grid;grid-template-columns:1fr .72fr;gap:70px;align-items:end;margin-bottom:50px}
+.section-head h2{font-size:clamp(37px,4.5vw,58px);line-height:1.03;font-weight:750;margin:13px 0 0}
+.section-head p{color:var(--muted);font-size:15px;line-height:1.85;margin:0}
+.section-dark .section-head p{color:#adb2b4}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid #dfe2e2;border-radius:var(--radius);padding:31px;min-height:235px;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);border-color:#c88b63;box-shadow:0 20px 50px rgba(33,36,38,.08)}
+.card-icon{width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,#25282a,#3c3f41);color:#d69a6b;display:grid;place-items:center;font-size:13px;font-weight:800;margin-bottom:25px}
+.card h3{font-size:19px;margin:0 0 9px;font-weight:720}
+.card p{margin:0;color:#70777b;font-size:13px;line-height:1.75}
+.field{display:grid;grid-template-columns:.85fr 1.15fr;gap:100px;align-items:center}
+.field-copy h2{font-size:clamp(38px,4.5vw,58px);line-height:1.03;margin:14px 0 22px}
+.field-copy p{color:var(--muted);font-size:15px;line-height:1.85;max-width:570px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:29px}
+.list div{font-size:12px;color:#555d62;display:flex;gap:10px}
+.list b{color:var(--copper)}
+.mobile-stage{height:520px;position:relative;display:grid;place-items:center}
+.mobile-stage:before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,#d9dddc,rgba(217,221,220,.25) 48%,transparent 70%)}
+.phone{position:relative;width:244px;height:490px;border:6px solid #252729;border-radius:37px;background:#101213;padding:8px;box-shadow:0 35px 80px rgba(31,34,35,.2)}
+.phone-screen{height:100%;border-radius:28px;background:#f6f7f6;padding:31px 15px 14px;overflow:hidden}
+.phone-brand{font-size:11px;color:var(--copper);font-weight:900}
+.phone-title{font-size:17px;font-weight:800;margin:7px 0 13px}
+.p-card{background:#fff;border:1px solid #e1e3e2;border-radius:12px;padding:11px;margin-bottom:9px;box-shadow:0 7px 18px rgba(31,34,35,.05)}
+.p-card small{font-size:7px;color:#909598;display:block}
+.p-card strong{font-size:10px;display:block;margin-top:5px}
+.p-photo{height:98px;border-radius:8px;margin-top:9px;background:linear-gradient(135deg,#969a9b,#d6d8d8 52%,#9da1a2);position:relative;overflow:hidden}
+.p-photo:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(112deg,transparent 0 8px,rgba(255,255,255,.2) 9px,transparent 11px 18px)}
+.measure-line{position:absolute;left:18px;right:18px;top:48px;border-top:2px solid var(--copper);z-index:2}
+.float{position:absolute;background:#fff;border:1px solid #dfe2e2;border-radius:12px;padding:12px 14px;box-shadow:0 18px 45px rgba(32,35,36,.12);font-size:9px;color:#7b8184}
+.float strong{display:block;color:#2a2d2f;font-size:11px;margin-bottom:2px}
+.float.a{right:0;top:72px}.float.b{left:0;bottom:45px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #dfe2e2}
+.step{padding:29px 24px 0;border-right:1px solid #dfe2e2}
+.step:first-child{padding-left:0}.step:last-child{border-right:0}
+.step-num{color:var(--copper);font-size:10px;font-weight:900;letter-spacing:.12em}
+.step h3{font-size:20px;margin:20px 0 9px}
+.step p{font-size:12px;color:#70777b;line-height:1.75;margin:0}
+.dark-content{max-width:820px}
+.dark-content h2{font-size:clamp(38px,4.5vw,58px);line-height:1.03;margin:15px 0 21px;color:#fff}
+.dark-content p{color:#b9bdbe;font-size:15px;line-height:1.85;max-width:760px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+.badge{padding:9px 12px;border-radius:999px;border:1px solid rgba(211,154,109,.3);background:rgba(184,111,63,.1);color:#d9a57d;font-size:9px;font-weight:800}
+.pricing{background:#f0f1f0;border-top:1px solid #dfe2e2}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:#fff;border:1px solid #dfe2e2;border-radius:19px;padding:30px;display:flex;flex-direction:column;min-height:430px}
+.plan.pro{border:1.5px solid var(--copper);box-shadow:0 22px 60px rgba(184,111,63,.12)}
 .plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.plan h3{font-size:22px}
-.badge-current{font-size:9px;font-weight:800;color:#8B552F;background:#F3E5D9;border:1px solid #E6C9B4;padding:7px 9px;border-radius:999px}
-.price{display:flex;align-items:baseline;gap:7px;margin-top:24px}
-.price strong{font-size:39px;letter-spacing:-.04em}
-.price span{font-size:12px;color:#697177}
-.users{color:#7A8187;font-size:12px;margin-top:2px}
-.plan ul{padding:0;margin:25px 0 30px;list-style:none;display:grid;gap:12px;flex:1}
-.plan li{font-size:13px;color:#596167;padding-left:19px;position:relative}
-.plan li:before{content:"✓";position:absolute;left:0;color:#B8733E;font-weight:900}
-.plan .btn{align-self:flex-start}
-.stripe-note{color:#7A8187;font-size:10px;margin-top:18px}
-.faq{max-width:900px;margin:auto;border-top:1px solid #DDE1E4}
-.faq-item{border-bottom:1px solid #DDE1E4}
-.faq-q{width:100%;border:0;background:transparent;padding:22px 0;display:flex;justify-content:space-between;align-items:center;text-align:left;color:#25282B;font-weight:750;cursor:pointer}
-.faq-q span:last-child{color:#B8733E;font-size:20px}
-.faq-a{display:none;color:#6B7379;font-size:14px;line-height:1.8;padding:0 55px 22px 0}
-.faq-item.open .faq-a{display:block}
-.cta{padding:30px 0 100px;background:#F7F8F8}
-.cta-box{position:relative;overflow:hidden;background:linear-gradient(135deg,#25272A 0%,#17191B 100%);border:1px solid #3C4044;border-radius:26px;padding:65px;color:#fff;box-shadow:var(--shadow)}
-.cta-box:after{content:"";position:absolute;width:500px;height:500px;right:-230px;top:-280px;border-radius:50%;background:radial-gradient(circle,rgba(184,115,62,.28),transparent 66%)}
-.cta-box>*{position:relative;z-index:1}
-.cta-box h2{color:#fff;max-width:720px}
-.cta-box p{color:#BFC3C6;max-width:650px;margin:18px 0 28px}
-.cta-note{margin-top:15px;color:#8F969B;font-size:10px}
-footer{background:#181A1C;color:#9EA4A8;border-top:1px solid #303337}
-.footer-inner{min-height:100px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:10px}
-.footer-brand{font-weight:900;color:#fff;font-size:15px}
-.footer-links{display:flex;gap:22px;flex-wrap:wrap}
+.plan h3{font-size:21px;margin:0}
+.current{font-size:8px;color:#8e552f;background:#f3e4d8;border:1px solid #e4c6b1;padding:7px 9px;border-radius:999px;font-weight:800}
+.price{display:flex;align-items:baseline;gap:6px;margin-top:22px}
+.price strong{font-size:39px;letter-spacing:-.05em}
+.price span{font-size:11px;color:#777e82}
+.users{font-size:11px;color:#858b8e}
+.plan ul{list-style:none;padding:0;margin:25px 0 28px;display:grid;gap:12px;flex:1}
+.plan li{position:relative;padding-left:18px;color:#5e666b;font-size:12px;line-height:1.5}
+.plan li:before{content:"✓";position:absolute;left:0;color:var(--copper);font-weight:900}
+.note{font-size:9px;color:#7e8588;margin-top:17px}
+.faq{max-width:900px;margin:auto;border-top:1px solid #dfe2e2}
+.faq-row{border-bottom:1px solid #dfe2e2}
+.faq-btn{width:100%;background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;gap:20px;text-align:left;color:#25282a;font-size:14px;font-weight:720;cursor:pointer}
+.faq-btn span:last-child{color:var(--copper);font-size:20px}
+.answer{display:none;padding:0 45px 22px 0;color:#71787c;font-size:13px;line-height:1.8}
+.faq-row.open .answer{display:block}
+.cta{padding:0 0 105px;background:#fff}
+.cta-box{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(125deg,#26292b,#151718);padding:62px;color:#fff;border:1px solid #393c3e}
+.cta-box:after{content:"";position:absolute;width:520px;height:520px;right:-280px;top:-300px;border-radius:50%;background:radial-gradient(circle,rgba(184,111,63,.3),transparent 68%)}
+.cta-box>*{position:relative;z-index:2}
+.cta-box h2{font-size:clamp(37px,4.5vw,58px);line-height:1.03;max-width:720px;margin:13px 0 18px}
+.cta-box p{max-width:620px;color:#b9bdbe;font-size:14px;margin:0 0 26px}
+.cta-small{font-size:9px;color:#858b8d;margin-top:14px}
+.footer{background:#17191a;color:#969b9e;border-top:1px solid #303335}
+.footer-inner{min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:9px}
+.footer-logo{font-weight:900;color:#fff;font-size:15px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
 .footer-links a:hover{color:#fff}
 @media(max-width:980px){
-  .nav-inner{gap:20px}.nav-links{gap:17px}.nav-links a{font-size:12px}
-  .hero-grid,.split,.section-head,.quote-grid{grid-template-columns:1fr;gap:45px}
-  .hero-grid{padding-top:65px}
-  .features,.pricing-grid{grid-template-columns:1fr 1fr}
-  .hero-card{max-width:720px}
-  .section-head{margin-bottom:35px}
+ .nav{gap:18px}.nav a{font-size:11px}
+ .hero-inner,.field,.section-head{grid-template-columns:1fr;gap:45px}
+ .hero-inner{padding:62px 0 76px}
+ .hero-visual{max-width:760px}
+ .cards,.plans{grid-template-columns:1fr 1fr}
+ .section-head{margin-bottom:38px}
 }
-@media(max-width:720px){
-  .container{width:min(var(--max),calc(100% - 28px))}
-  .nav-inner{min-height:68px}.nav-links{display:none}.nav-actions{margin-left:auto}
-  .nav-actions .btn-light{display:none}.brand img{width:122px}
-  .hero-grid{padding:50px 0 55px}
-  h1{font-size:47px}
-  .lead{font-size:16px}
-  .trust{display:grid;gap:9px}
-  .dashboard-body{grid-template-columns:76px 1fr;min-height:430px}
-  .sidebar{padding:20px 7px}.nav-mini{font-size:8px;padding:9px 5px}
-  .dash-main{padding:20px 13px}.stats{gap:6px}.stat{padding:10px}.stat strong{font-size:15px}
-  .bars{gap:5px;height:95px}.activity{display:none}
-  .section{padding:76px 0}
-  h2{font-size:38px}
-  .features,.pricing-grid{grid-template-columns:1fr}
-  .checks{grid-template-columns:1fr}
-  .phone-zone{min-height:480px}
-  .f1{right:-4px;top:60px}.f2{left:-4px;bottom:30px}
-  .process{grid-template-columns:1fr 1fr}
-  .step{border-right:0;border-bottom:1px solid #DDE1E4;padding:24px 15px}
-  .step:nth-child(odd){padding-left:0;padding-right:20px;border-right:1px solid #DDE1E4}
-  .step:nth-child(even){padding-right:0}
-  .quote-grid{gap:12px}.quote,.metric{padding:28px}.quote p{font-size:21px}
-  .cta-box{padding:42px 25px}.cta-box h2{font-size:36px}
-  .footer-inner{padding:25px 0;align-items:flex-start;flex-direction:column}
+@media(max-width:700px){
+ .container{width:calc(100% - 28px)}
+ .header-inner{height:68px}.nav{display:none}.header-actions{margin-left:auto}.header-actions .btn-outline-dark{display:none}.logo{width:122px}
+ .hero-inner{padding:48px 0 58px}.hero{overflow:hidden}
+ h1{font-size:47px}.lead{font-size:15px}
+ .microproof{display:grid;gap:8px}
+ .app{grid-template-columns:76px 1fr;min-height:400px}.app-side{padding:20px 7px}.app-nav{font-size:7px;padding:8px 5px}.app-main{padding:18px 12px}
+ .kpis{gap:5px}.kpi{padding:9px}.kpi strong{font-size:14px}.bars{height:100px;gap:5px}.lower{display:none}
+ .section{padding:76px 0}.section-head h2,.field-copy h2,.dark-content h2{font-size:39px}
+ .cards,.plans{grid-template-columns:1fr}.card{min-height:0}.list{grid-template-columns:1fr}
+ .mobile-stage{height:485px}.phone{width:224px;height:455px}.float.a{right:-2px}.float.b{left:-2px}
+ .steps{grid-template-columns:1fr 1fr}.step{padding:24px 14px 20px}.step:first-child{padding-left:0}.step:nth-child(odd){border-right:1px solid #dfe2e2}.step:nth-child(even){border-right:0}
+ .cta{padding-bottom:75px}.cta-box{padding:40px 25px}.cta-box h2{font-size:38px}
+ .footer-inner{padding:25px 0;align-items:flex-start;flex-direction:column}
 }
 </style>
 </head>
 <body>
-<header class="nav">
-<div class="container nav-inner">
-<a class="brand" href="#top" aria-label="Octave"><img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave"></a>
-<nav class="nav-links">
+<header class="header">
+<div class="container header-inner">
+<a class="logo" href="#top"><img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave"></a>
+<nav class="nav">
 <a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a>
 </nav>
-<div class="nav-actions"><a class="btn btn-light" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Accéder à Octave</a><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire <span>→</span></a></div>
+<div class="header-actions"><a class="btn btn-outline-dark" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Accéder à Octave</a><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire <span>→</span></a></div>
 </div>
 </header>
 
 <main id="top">
 <section class="hero">
-<div class="container hero-grid">
+<div class="container hero-inner">
 <div>
-<div class="eyebrow"><span class="dot"></span> Le logiciel de gestion pensé pour le terrain</div>
-<h1>Votre entreprise avance.<br><span>Octave aussi.</span></h1>
+<div class="kicker">Le logiciel de gestion pensé pour le terrain</div>
+<h1>Votre entreprise avance.<br><em>Octave aussi.</em></h1>
 <p class="lead">Devis, factures, clients, chantiers, photos et prise de cote : Octave réunit l'essentiel dans une expérience claire, rapide et pensée pour les professionnels qui travaillent autant sur le terrain qu'au bureau.</p>
-<div class="actions"><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Commencer gratuitement <span>→</span></a><a class="btn btn-light" href="#tarifs">Voir les forfaits</a></div>
-<div class="trust"><span><b>✓</b> 1 espace pour toute l'activité</span><span><b>✓</b> PC, tablette & mobile</span><span><b>✓</b> Pensé pour le terrain</span></div>
+<div class="actions"><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Commencer gratuitement <span>→</span></a><a class="btn btn-outline" href="#tarifs">Voir les tarifs</a></div>
+<div class="microproof"><span>Un seul espace pour votre activité</span><span>PC, tablette & mobile</span><span>Pensé pour le terrain</span></div>
 </div>
-<div class="hero-card">
-<div class="dashboard">
-<div class="window"><i></i><i></i><i></i></div>
-<div class="dashboard-body">
-<aside class="sidebar"><div class="brand-mini">octave</div><div class="nav-mini active">◆ Tableau de bord</div><div class="nav-mini">▣ Clients</div><div class="nav-mini">◫ Devis</div><div class="nav-mini">▤ Factures</div><div class="nav-mini">⌂ Chantiers</div><div class="nav-mini">◌ Planning</div><div style="height:1px;background:#292725;margin:14px 7px"></div><div class="nav-mini">⚙ Réglages</div></aside>
-<div class="dash-main">
-<div class="dash-top"><div><div class="dash-title">Bonjour, votre activité</div><div class="dash-sub">Vue d'ensemble de vos opérations</div></div><div class="status">Tout est à jour</div></div>
-<div class="stats"><div class="stat"><small>CA facturé</small><strong>48 920 €</strong><em>+12,4 % ce mois</em></div><div class="stat"><small>Devis en attente</small><strong>18</strong><em>6 à relancer</em></div><div class="stat"><small>Chantiers actifs</small><strong>14</strong><em>3 cette semaine</em></div></div>
-<div class="chart"><div class="chart-head"><span>Chiffre d'affaires</span><span>6 derniers mois</span></div><div class="bars"><i style="height:42%"></i><i style="height:55%"></i><i style="height:49%"></i><i style="height:69%"></i><i style="height:63%"></i><i style="height:89%"></i><i style="height:77%"></i></div></div>
-<div class="activity"><div><small>Dernières actions</small><div class="row"><span>Devis #DV-2048</span><b>Signé</b></div><div class="row"><span>Facture #FA-981</span><b>Envoyée</b></div></div><div><small>À faire aujourd'hui</small><div class="row"><span>Visite chantier</span><span>10:30</span></div><div class="row"><span>Relance devis</span><span>15:00</span></div></div></div>
-</div></div></div>
+<div class="hero-visual">
+<div class="app-frame">
+<div class="frame-top"><i></i><i></i><i></i></div>
+<div class="app">
+<aside class="app-side"><div class="app-name">octave</div><div class="app-nav active">◆ Tableau de bord</div><div class="app-nav">▣ Clients</div><div class="app-nav">◫ Devis</div><div class="app-nav">▤ Factures</div><div class="app-nav">⌂ Chantiers</div><div class="app-nav">◌ Planning</div><div style="height:1px;background:#292b2c;margin:14px 7px"></div><div class="app-nav">⚙ Réglages</div></aside>
+<div class="app-main">
+<div class="app-head"><div><strong>Bonjour, votre activité</strong><small>Vue d'ensemble de vos opérations</small></div><div class="live">Tout est à jour</div></div>
+<div class="kpis"><div class="kpi"><small>CA facturé</small><strong>48 920 €</strong><span>+12,4 % ce mois</span></div><div class="kpi"><small>Devis en attente</small><strong>18</strong><span>6 à relancer</span></div><div class="kpi"><small>Chantiers actifs</small><strong>14</strong><span>3 cette semaine</span></div></div>
+<div class="chart"><div class="chart-top"><span>Chiffre d'affaires</span><span>6 derniers mois</span></div><div class="bars"><i style="height:40%"></i><i style="height:54%"></i><i style="height:48%"></i><i style="height:68%"></i><i style="height:61%"></i><i style="height:88%"></i><i style="height:76%"></i></div></div>
+<div class="lower"><div><small>Dernières actions</small><p><span>Devis #DV-2048</span><b>Signé</b></p><p><span>Facture #FA-981</span><b>Envoyée</b></p></div><div><small>À faire aujourd'hui</small><p><span>Visite chantier</span><span>10:30</span></p><p><span>Relance devis</span><span>15:00</span></p></div></div>
+</div>
+</div>
 </div>
 </div>
 </section>
 
-<section class="section white" id="fonctionnalites">
+<section class="section section-white" id="fonctionnalites">
 <div class="container">
-<div class="section-head"><div><div class="kicker">Un seul espace de travail</div><h2>Tout ce qu'il faut pour gérer votre activité.</h2></div><p class="section-intro">Moins de fichiers dispersés, moins de ressaisie. Octave rapproche votre activité commerciale, vos clients et vos chantiers.</p></div>
-<div class="features">
-<article class="feature"><div class="icon">▤</div><h3>Devis professionnels</h3><p>Créez, personnalisez, dupliquez et envoyez vos devis avec vos prestations et vos tarifs.</p></article>
-<article class="feature"><div class="icon">▥</div><h3>Factures & suivi</h3><p>Transformez vos devis en factures et gardez une vision claire des documents envoyés et à relancer.</p></article>
-<article class="feature"><div class="icon">⌂</div><h3>Gestion des chantiers</h3><p>Un dossier centralise les informations, documents, photos et relevés de chaque projet.</p></article>
-<article class="feature"><div class="icon">◉</div><h3>Photos chantier</h3><p>Prenez vos photos depuis le terrain et rattachez-les immédiatement au bon chantier.</p></article>
-<article class="feature"><div class="icon">⌗</div><h3>Prise de cote</h3><p>Conservez vos mesures directement dans le dossier du chantier pour éviter les oublis et les allers-retours.</p></article>
-<article class="feature"><div class="icon">◇</div><h3>Suivi client</h3><p>Retrouvez les informations utiles et les étapes du projet au même endroit pour une relation plus fluide.</p></article>
+<div class="section-head"><div><div class="kicker">Un seul espace de travail</div><h2>Tout ce qu'il faut. Rien de superflu.</h2></div><p>Octave rapproche votre activité commerciale, vos clients, vos chantiers et votre facturation pour éviter les fichiers dispersés et la ressaisie.</p></div>
+<div class="cards">
+<article class="card"><div class="card-icon">01</div><h3>Devis professionnels</h3><p>Créez, personnalisez, dupliquez et envoyez vos devis avec vos prestations et vos tarifs.</p></article>
+<article class="card"><div class="card-icon">02</div><h3>Factures & suivi</h3><p>Transformez vos devis en factures et gardez une vision claire des documents envoyés et à relancer.</p></article>
+<article class="card"><div class="card-icon">03</div><h3>Gestion des chantiers</h3><p>Un dossier centralise les informations, documents, photos et relevés de chaque projet.</p></article>
+<article class="card"><div class="card-icon">04</div><h3>Photos chantier</h3><p>Prenez vos photos depuis le terrain et rattachez-les immédiatement au bon chantier.</p></article>
+<article class="card"><div class="card-icon">05</div><h3>Prise de cote</h3><p>Conservez vos mesures directement dans le dossier du chantier pour éviter les oublis et les allers-retours.</p></article>
+<article class="card"><div class="card-icon">06</div><h3>Suivi client</h3><p>Retrouvez les informations utiles et les étapes du projet au même endroit pour une relation plus fluide.</p></article>
 </div>
 </div>
 </section>
 
-<section class="section light" id="chantier">
-<div class="container split">
-<div class="copy"><div class="kicker">Sur le chantier</div><h2>Votre bureau vous suit sur le terrain.</h2><p>Octave est pensé pour les moments où vous n'êtes pas derrière un ordinateur. Photographiez, mesurez, ajoutez vos informations et retrouvez le dossier correspondant.</p><div class="checks"><div class="check"><i>✓</i><span>Photos rattachées au chantier</span></div><div class="check"><i>✓</i><span>Prise de cote directement sur place</span></div><div class="check"><i>✓</i><span>Documents et informations centralisés</span></div><div class="check"><i>✓</i><span>Continuité entre terrain et bureau</span></div></div></div>
-<div class="phone-zone"><div class="float f1"><strong>Prise de cote</strong>4,20 m × 2,85 m</div><div class="phone"><div class="screen"><div class="mobile-logo">octave</div><div class="mobile-title">Chantier Martin</div><div class="mobile-card"><small>CHANTIER · EN COURS</small><strong>Rénovation extérieure</strong><div class="photo"><span class="measure"></span></div></div><div class="mobile-card"><small>MESURES</small><strong>4,20 m × 2,85 m</strong></div><div class="mobile-card"><small>PHOTOS</small><strong>18 photos ajoutées</strong></div></div></div><div class="float f2"><strong>18 photos</strong>Dernière capture · il y a 4 min</div></div>
+<section class="section section-silver" id="chantier">
+<div class="container field">
+<div class="field-copy"><div class="kicker">Sur le chantier</div><h2>Votre bureau vous suit sur le terrain.</h2><p>Octave est pensé pour les moments où vous n'êtes pas derrière un ordinateur. Photographiez, mesurez, ajoutez vos informations et retrouvez le dossier correspondant.</p>
+<div class="list"><div><b>✓</b><span>Photos rattachées au chantier</span></div><div><b>✓</b><span>Prise de cote sur place</span></div><div><b>✓</b><span>Documents centralisés</span></div><div><b>✓</b><span>Continuité terrain / bureau</span></div></div></div>
+<div class="mobile-stage"><div class="float a"><strong>Prise de cote</strong>4,20 m × 2,85 m</div><div class="phone"><div class="phone-screen"><div class="phone-brand">octave</div><div class="phone-title">Chantier Martin</div><div class="p-card"><small>CHANTIER · EN COURS</small><strong>Rénovation extérieure</strong><div class="p-photo"><span class="measure-line"></span></div></div><div class="p-card"><small>MESURES</small><strong>4,20 m × 2,85 m</strong></div><div class="p-card"><small>PHOTOS</small><strong>18 photos ajoutées</strong></div></div></div><div class="float b"><strong>18 photos</strong>Dernière capture · il y a 4 min</div></div>
 </div>
 </section>
 
-<section class="section white">
+<section class="section section-white">
 <div class="container">
-<div class="kicker">Du devis à la facture</div><h2>Une continuité naturelle, étape après étape.</h2>
-<p class="section-intro" style="margin-top:16px">Les informations utiles restent au même endroit au lieu d'être recopiées à chaque étape.</p>
-<div class="process">
+<div class="kicker">Du devis à la facture</div><h2 style="font-size:clamp(37px,4.5vw,58px);line-height:1.03;margin:13px 0 15px">Une continuité naturelle.</h2>
+<p style="max-width:590px;color:var(--muted);font-size:15px;margin:0 0 45px">Les informations utiles restent au même endroit au lieu d'être recopiées à chaque étape.</p>
+<div class="steps">
 <div class="step"><div class="step-num">01</div><h3>Chiffrer</h3><p>Créez votre devis à partir de vos prestations et de vos prix.</p></div>
 <div class="step"><div class="step-num">02</div><h3>Faire avancer</h3><p>Le projet accepté devient votre espace chantier.</p></div>
 <div class="step"><div class="step-num">03</div><h3>Documenter</h3><p>Photos, prise de cote et documents restent liés au projet.</p></div>
@@ -296,55 +260,65 @@ footer{background:#181A1C;color:#9EA4A8;border-top:1px solid #303337}
 </div>
 </section>
 
-<section class="section dark" id="electronique">
-<div class="container"><div class="electro">
-<span class="badge">Facturation électronique</span>
-<h2>Anticipez la nouvelle façon de facturer.</h2>
-<p>Octave est conçu pour accompagner les entreprises vers la facturation électronique et faire évoluer la gestion des factures sans multiplier les outils. Les flux et modalités dépendent du dispositif retenu et de la configuration finale du service.</p>
-<div class="formats"><span class="format">Factur-X</span><span class="format">Formats structurés</span><span class="format">Transmission électronique</span><span class="format">Suivi des statuts</span></div>
+<section class="section section-dark" id="electronique">
+<div class="container"><div class="dark-content">
+<div class="kicker">Facturation électronique</div><h2>Préparez votre entreprise à la nouvelle facturation.</h2>
+<p>Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Octave est pensé pour faire évoluer votre gestion des factures sans multiplier les outils.</p>
+<div class="badges"><span class="badge">Facturation électronique</span><span class="badge">Transmission électronique</span><span class="badge">Suivi des statuts</span><span class="badge">Factur-X</span></div>
 </div></div>
 </section>
 
-<section class="section light">
-<div class="container quote-grid">
-<div class="quote"><p>« Un bon logiciel ne devrait pas vous demander de penser comme lui. Il devrait comprendre la façon dont votre entreprise travaille. »</p><small>La philosophie Octave : simplicité, terrain et continuité.</small></div>
-<div class="metric"><strong>1</strong><span>seul environnement pour rapprocher votre activité commerciale, vos chantiers et votre facturation.</span></div>
-</div>
-</section>
-
-<section class="section pricing" id="tarifs">
+<section class="section section-white" id="tarifs">
 <div class="container">
-<div class="section-head"><div><div class="kicker">Des forfaits simples</div><h2>Commencez gratuitement. Évoluez avec votre activité.</h2></div><p class="section-intro">Choisissez le niveau d'Octave adapté à votre façon de travailler. Vous pouvez commencer avec l'essentiel puis passer à une offre plus complète.</p></div>
-<div class="pricing-grid">
-<article class="plan"><div class="plan-top"><h3>Octave Gratuit</h3></div><div class="price"><strong>0 €</strong><span>/ mois</span></div><div class="users">1 utilisateur</div><ul><li>Jusqu'à 5 devis et factures au total par mois</li><li>Gestion des clients et du catalogue</li><li>Sans facturation électronique</li><li>Sans photos chantier</li></ul><a class="btn btn-light" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir ce forfait</a></article>
-<article class="plan pro"><div class="plan-top"><h3>Pro</h3><span class="badge-current">Forfait actuel</span></div><div class="price"><strong>17,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 2 utilisateurs</div><ul><li>Devis et factures illimités</li><li>Facturation électronique via une plateforme agréée</li><li>Photos et relevés de chantier</li><li>Travail en équipe jusqu'à 2 utilisateurs</li></ul><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir Pro <span>→</span></a></article>
-<article class="plan"><div class="plan-top"><h3>Équipe</h3></div><div class="price"><strong>29,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 5 utilisateurs</div><ul><li>Toutes les fonctions de Pro</li><li>Travail en équipe jusqu'à 5 utilisateurs</li><li>Pour une petite équipe</li></ul><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Passer à Équipe <span>→</span></a></article>
+<div class="section-head"><div><div class="kicker">Des forfaits simples</div><h2>Commencez gratuitement. Évoluez quand vous êtes prêt.</h2></div><p>Des offres lisibles pour passer progressivement d'une gestion essentielle à un véritable espace de travail d'équipe.</p></div>
+<div class="plans">
+<article class="plan"><div class="plan-top"><h3>Octave Gratuit</h3></div><div class="price"><strong>0 €</strong><span>/ mois</span></div><div class="users">1 utilisateur</div><ul><li>Jusqu'à 5 devis et factures au total par mois</li><li>Gestion des clients et du catalogue</li><li>Sans facturation électronique</li><li>Sans photos chantier</li></ul><a class="btn btn-outline" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir ce forfait</a></article>
+<article class="plan pro"><div class="plan-top"><h3>Pro</h3><span class="current">Forfait actuel</span></div><div class="price"><strong>17,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 2 utilisateurs</div><ul><li>Devis et factures illimités</li><li>Facturation électronique via une plateforme agréée</li><li>Photos et relevés de chantier</li><li>Travail en équipe jusqu'à 2 utilisateurs</li></ul><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir Pro <span>→</span></a></article>
+<article class="plan"><div class="plan-top"><h3>Équipe</h3></div><div class="price"><strong>29,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 5 utilisateurs</div><ul><li>Toutes les fonctions de Pro</li><li>Travail en équipe jusqu'à 5 utilisateurs</li><li>Pour une petite équipe</li></ul><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Passer à Équipe <span>→</span></a></article>
 </div>
-<p class="stripe-note">Les forfaits payants utilisent Stripe. L'activation et l'historique des factures dépendent de la bonne réception des événements Stripe.</p>
+<div class="note">Les forfaits payants utilisent Stripe. L'activation et l'historique des factures dépendent de la bonne réception des événements Stripe.</div>
 </div>
 </section>
 
-<section class="section white" id="faq">
-<div class="container"><div class="section-head"><div><div class="kicker">Questions fréquentes</div><h2>Tout ce qu'il faut savoir avant de commencer.</h2></div></div>
+<section class="section section-silver" id="faq">
+<div class="container"><div class="section-head"><div><div class="kicker">Questions fréquentes</div><h2>Avant de commencer.</h2></div></div>
 <div class="faq">
-<div class="faq-item open"><button class="faq-q"><span>Octave est-il accessible depuis un smartphone ?</span><span>−</span></button><div class="faq-a"><p>Oui. L'expérience est pensée pour être utilisée sur ordinateur comme sur les appareils mobiles afin de retrouver les informations utiles au bureau comme sur le terrain.</p></div></div>
-<div class="faq-item"><button class="faq-q"><span>Puis-je prendre des photos directement depuis un chantier ?</span><span>+</span></button><div class="faq-a"><p>Oui. Les photos sont intégrées au dossier du chantier afin de conserver une trace organisée de vos interventions et de l'avancement.</p></div></div>
-<div class="faq-item"><button class="faq-q"><span>La prise de cote est-elle intégrée au suivi du chantier ?</span><span>+</span></button><div class="faq-a"><p>Oui. Les mesures sont conservées avec les autres informations du projet pour limiter les oublis et les allers-retours.</p></div></div>
-<div class="faq-item"><button class="faq-q"><span>Octave est-il compatible avec la facturation électronique ?</span><span>+</span></button><div class="faq-a"><p>Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Les modalités précises de transmission dépendent de la configuration du service et du dispositif retenu.</p></div></div>
-<div class="faq-item"><button class="faq-q"><span>Quel forfait choisir pour commencer ?</span><span>+</span></button><div class="faq-a"><p>Le forfait Gratuit permet de découvrir Octave. Pro convient à une activité qui facture régulièrement et souhaite les fonctions chantier et la facturation électronique. Équipe ajoute le travail jusqu'à 5 utilisateurs.</p></div></div>
+<div class="faq-row open"><button class="faq-btn"><span>Octave est-il accessible depuis un smartphone ?</span><span>−</span></button><div class="answer">Oui. L'expérience est pensée pour être utilisée sur ordinateur comme sur les appareils mobiles afin de retrouver les informations utiles au bureau comme sur le terrain.</div></div>
+<div class="faq-row"><button class="faq-btn"><span>Puis-je prendre des photos directement depuis un chantier ?</span><span>+</span></button><div class="answer">Oui. Les photos sont intégrées au dossier du chantier afin de conserver une trace organisée de vos interventions et de l'avancement.</div></div>
+<div class="faq-row"><button class="faq-btn"><span>La prise de cote est-elle intégrée au suivi du chantier ?</span><span>+</span></button><div class="answer">Oui. Les mesures sont conservées avec les autres informations du projet pour limiter les oublis et les allers-retours.</div></div>
+<div class="faq-row"><button class="faq-btn"><span>Octave est-il compatible avec la facturation électronique ?</span><span>+</span></button><div class="answer">Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Les modalités précises dépendent de la configuration du service et du dispositif retenu.</div></div>
+<div class="faq-row"><button class="faq-btn"><span>Quel forfait choisir pour commencer ?</span><span>+</span></button><div class="answer">Le forfait Gratuit permet de découvrir Octave. Pro convient à une activité qui facture régulièrement et souhaite les fonctions chantier et la facturation électronique. Équipe ajoute le travail jusqu'à 5 utilisateurs.</div></div>
 </div></div>
 </section>
 
-<section class="cta"><div class="container"><div class="cta-box"><div class="kicker">Prêt à passer à Octave ?</div><h2>Faites moins d'administratif. Faites plus de terrain.</h2><p>Commencez gratuitement et découvrez une gestion plus simple de vos devis, factures et chantiers.</p><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire sur Octave <span>→</span></a><div class="cta-note">Inscription · configuration de votre entreprise · prise en main</div></div></div></section>
+<section class="cta">
+<div class="container"><div class="cta-box">
+<div class="kicker">Prêt à passer à Octave ?</div>
+<h2>Faites moins d'administratif. Faites plus de terrain.</h2>
+<p>Commencez gratuitement et découvrez une gestion plus simple de vos devis, factures et chantiers.</p>
+<a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Commencer gratuitement <span>→</span></a>
+<div class="cta-small">Inscription · configuration de votre entreprise · prise en main</div>
+</div></div>
+</section>
 </main>
 
-<footer><div class="container footer-inner"><div><span class="footer-brand">Octave</span> · Gestion d'entreprise & chantiers</div><div class="footer-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire</a></div><div>© 2026 Octave</div></div></footer>
+<footer class="footer">
+<div class="container footer-inner">
+<div><span class="footer-logo">Octave</span> · Gestion d'entreprise & chantiers</div>
+<div class="footer-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire</a></div>
+<div>© 2026 Octave</div>
+</div>
+</footer>
 <script>
-document.querySelectorAll(".faq-q").forEach(btn=>{
+document.querySelectorAll(".faq-btn").forEach(btn=>{
  btn.addEventListener("click",()=>{
-  const item=btn.closest(".faq-item"), open=!item.classList.contains("open");
-  document.querySelectorAll(".faq-item").forEach(i=>{i.classList.remove("open");i.querySelector(".faq-q span:last-child").textContent="+"});
-  if(open){item.classList.add("open");btn.querySelector("span:last-child").textContent="−";}
+  const row=btn.closest(".faq-row");
+  const willOpen=!row.classList.contains("open");
+  document.querySelectorAll(".faq-row").forEach(r=>{
+   r.classList.remove("open");
+   r.querySelector(".faq-btn span:last-child").textContent="+";
+  });
+  if(willOpen){row.classList.add("open");btn.querySelector("span:last-child").textContent="−";}
  });
 });
 </script>
