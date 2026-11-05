@@ -135,11 +135,154 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opa
 
 @media(max-width:820px){.nav-links{display:none}.hero{padding-top:78px}.hero-grid{gap:42px}.dashboard{transform:none}.brand .logo-image{width:105px}.container{width:min(var(--max),calc(100% - 28px))}}
 </style>
-</head>
+
+<style>
+/* === OCTAVE : équilibre clair + cuivre === */
+:root{
+  --ink:#F5F0EA;
+  --muted:#B8B1AA;
+  --line:rgba(210,154,108,.20);
+  --surface:#171A1D;
+  --surface-2:#1D2023;
+  --soft:#24282C;
+  --copper:#B87345;
+  --copper-2:#E0A06F;
+}
+body{
+  background:
+    radial-gradient(900px 560px at 78% -5%,rgba(184,115,69,.16),transparent 62%),
+    radial-gradient(760px 520px at 4% 30%,rgba(225,214,202,.055),transparent 65%),
+    linear-gradient(180deg,#0D1013 0%,#111519 48%,#0D1114 100%);
+  color:#F5F0EA;
+}
+body:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(115deg,rgba(255,255,255,.018),transparent 35%,rgba(184,115,69,.025) 70%,transparent);
+}
+.nav{background:rgba(13,16,19,.82);border-bottom:1px solid rgba(210,154,108,.16)}
+.nav-inner{height:78px}
+.brand .logo-image{width:132px;height:38px}
+.nav-links{color:#C3BBB3}
+.nav-links a:hover{color:#F1E6DC}
+.btn-ghost{background:rgba(255,255,255,.035);border-color:rgba(210,154,108,.25);color:#F0E8E1}
+.hero{padding:105px 0 88px}
+.hero:before{background:radial-gradient(circle,rgba(184,115,69,.20),rgba(184,115,69,.06) 38%,transparent 70%)}
+.eyebrow{background:rgba(184,115,69,.09);border-color:rgba(224,160,111,.38)}
+h1{color:#FAF6F1}
+.hero-copy{color:#C2BBB4}
+.trust{color:#9F9992}
+.trust strong{color:#E2A06F}
+
+/* Dashboard plus clair */
+.dashboard{
+  background:linear-gradient(145deg,#1A1E22,#121619);
+  border-color:rgba(224,160,111,.22);
+  box-shadow:0 35px 90px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.06);
+}
+.dash-top{background:rgba(255,255,255,.025)}
+.sidebar{background:rgba(255,255,255,.018)}
+.side-item{color:#9D9790}
+.side-item.active{background:linear-gradient(100deg,rgba(184,115,69,.22),rgba(184,115,69,.08));color:#E5A879}
+.dash-title{color:#F0E9E2}
+.dash-sub,.stat-label,.chart-head,.activity-title{color:#918B84}
+.stat,.chart,.activity-card{
+  background:linear-gradient(145deg,#202428,#181C20);
+  border-color:rgba(255,255,255,.075);
+}
+.stat-value{color:#F4EEE8}
+.stat-change{color:#9EC2A2}
+.activity-row{color:#C1BAB3}
+.bar{background:linear-gradient(to top,rgba(184,115,69,.30),rgba(224,160,111,.92))}
+
+/* Sections : sortir du noir pur */
+.section.alt{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(184,115,69,.018)),
+    #111519;
+}
+.section:not(.alt){background:rgba(14,18,21,.38)}
+.section-head{margin-bottom:50px}
+.section-intro,.feature p,.copy p,.step p,.einvoice p,.faq-a,.quote small,.metric span{
+  color:#AFA9A2;
+}
+.section h2{color:#F4EEE8}
+.kicker{color:#D89A69}
+
+/* Cartes plus lumineuses */
+.feature{
+  background:linear-gradient(145deg,#1A1E22,#15191C);
+  border-color:rgba(224,160,111,.15);
+  box-shadow:inset 0 1px rgba(255,255,255,.035),0 18px 50px rgba(0,0,0,.20);
+}
+.feature:hover{border-color:rgba(224,160,111,.34);background:linear-gradient(145deg,#1D2226,#171B1F)}
+.icon{background:linear-gradient(145deg,rgba(184,115,69,.19),rgba(255,255,255,.035));border-color:rgba(224,160,111,.22);color:#E0A06F}
+.feature h3{color:#F0E9E2}
+
+/* Chantier / mobile */
+.phone{background:linear-gradient(145deg,#202428,#0F1215);border-color:rgba(224,160,111,.28)}
+.phone-screen{background:linear-gradient(160deg,#1B2024,#111519)}
+.mobile-card{background:linear-gradient(145deg,#23282C,#191D21);border-color:rgba(255,255,255,.08)}
+.float-card{background:rgba(28,32,35,.94);border-color:rgba(224,160,111,.18);color:#D9D1C9}
+
+/* Process plus respiré */
+.process{border-top-color:rgba(224,160,111,.18)}
+.step{border-right-color:rgba(224,160,111,.14)}
+.step h3{color:#F0E9E2}
+.step-num{color:#E0A06F}
+
+/* Facturation électronique */
+.einvoice{
+  background:
+    radial-gradient(500px 300px at 85% 0%,rgba(184,115,69,.15),transparent 68%),
+    linear-gradient(135deg,#1C1D1E,#15191C);
+  border-color:rgba(224,160,111,.25);
+}
+.format{background:rgba(255,255,255,.045);border-color:rgba(224,160,111,.18);color:#DDD5CD}
+
+/* Citation / métrique */
+.quote,.metric{
+  background:linear-gradient(145deg,#1A1E22,#15191C);
+  border-color:rgba(224,160,111,.15);
+}
+.quote p{color:#F1EBE5}
+
+/* FAQ */
+.faq-item{border-top-color:rgba(224,160,111,.16)}
+.faq-item:last-child{border-bottom-color:rgba(224,160,111,.16)}
+.faq-q{color:#F0E9E2}
+.faq-q:hover{color:#E0A06F}
+
+/* CTA plus clair et moins "bloc noir" */
+.cta{
+  background:radial-gradient(700px 300px at 50% 0%,rgba(184,115,69,.14),transparent 70%);
+}
+.cta-box{
+  background:
+    radial-gradient(500px 260px at 50% 0%,rgba(184,115,69,.13),transparent 72%),
+    linear-gradient(145deg,#1A1D20,#13171A);
+  border-color:rgba(224,160,111,.23);
+  box-shadow:0 25px 70px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.04);
+}
+.cta h2{color:#F7F1EB}
+.cta p{color:#B0A9A2}
+
+/* Footer */
+.footer{background:#0D1114;border-top-color:rgba(224,160,111,.14);color:#858079}
+.footer-brand{color:#D5CDC5}
+
+/* Mobile */
+@media(max-width:620px){
+  .brand .logo-image{width:106px}
+  .hero{padding:72px 0 58px}
+  h1{font-size:44px}
+  .hero-copy{color:#BDB6AF}
+  .feature,.quote,.metric{background:linear-gradient(145deg,#191D20,#14181B)}
+}
+</style></head>
 <body>
 <div id="app">
 <header class="nav"><div class="container nav-inner">
-<a class="brand" href="#top" aria-label="Octave accueil"><img class="logo-image" src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="brand-fallback">octave</span><small>PRO</small></a>
+<a class="brand" href="#top" aria-label="Octave accueil"><img class="logo-image" src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="brand-fallback">octave</span></a>
 <nav class="nav-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#faq">FAQ</a></nav>
 <div class="nav-actions"><a class="btn btn-ghost" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Accéder à Octave</a><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S’inscrire <span>→</span></a></div>
 </div></header>
