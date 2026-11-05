@@ -57,6 +57,9 @@ h1 em{font-style:normal;color:var(--copper)}
 .microproof{display:flex;gap:26px;flex-wrap:wrap;margin-top:27px;color:#7a8084;font-size:11px}
 .microproof span:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--copper);margin:0 8px 2px 0}
 .hero-visual{position:relative}
+.hero-visual-image{position:relative;background:#17191a;border:1px solid #343739;border-radius:22px;box-shadow:0 38px 100px rgba(24,26,27,.18);overflow:hidden}
+.hero-visual-image img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover}
+.hero-visual-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.04),transparent 38%,rgba(184,111,63,.08));mix-blend-mode:screen}
 .app-frame{background:#191b1c;border:1px solid #3a3d3f;border-radius:22px;box-shadow:0 38px 100px rgba(24,26,27,.22);overflow:hidden;transform:perspective(1400px) rotateY(-3deg)}
 .frame-top{height:42px;display:flex;align-items:center;gap:7px;padding:0 15px;border-bottom:1px solid rgba(255,255,255,.07)}
 .frame-top i{width:7px;height:7px;border-radius:50%;background:#666a6b}
@@ -128,6 +131,8 @@ h1 em{font-style:normal;color:var(--copper)}
 .dark-content{max-width:820px}
 .dark-content h2{font-size:clamp(38px,4.5vw,58px);line-height:1.03;margin:15px 0 21px;color:#fff}
 .dark-content p{color:#b9bdbe;font-size:15px;line-height:1.85;max-width:760px}
+.billing-logo{margin-top:30px;display:inline-flex;align-items:center;justify-content:center;padding:15px 20px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 34px rgba(0,0,0,.12)}
+.billing-logo img{display:block;width:auto;max-width:240px;max-height:70px;object-fit:contain}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
 .badge{padding:9px 12px;border-radius:999px;border:1px solid rgba(211,154,109,.3);background:rgba(184,111,63,.1);color:#d9a57d;font-size:9px;font-weight:800}
 .pricing{background:#f0f1f0;border-top:1px solid #dfe2e2}
@@ -210,7 +215,10 @@ h1 em{font-style:normal;color:var(--copper)}
 <div class="microproof"><span>Un seul espace pour votre activité</span><span>PC, tablette & mobile</span><span>Pensé pour le terrain</span></div>
 </div>
 <div class="hero-visual">
-<div class="app-frame">
+<div class="hero-visual-image">
+<img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Capture-tableau.webp" alt="Aperçu du tableau de bord Octave">
+</div>
+<div class="app-frame" style="display:none">
 <div class="frame-top"><i></i><i></i><i></i></div>
 <div class="app">
 <aside class="app-side"><div class="app-name">octave</div><div class="app-nav active">◆ Tableau de bord</div><div class="app-nav">▣ Clients</div><div class="app-nav">◫ Devis</div><div class="app-nav">▤ Factures</div><div class="app-nav">⌂ Chantiers</div><div class="app-nav">◌ Planning</div><div style="height:1px;background:#292b2c;margin:14px 7px"></div><div class="app-nav">⚙ Réglages</div></aside>
@@ -264,6 +272,9 @@ h1 em{font-style:normal;color:var(--copper)}
 <div class="container"><div class="dark-content">
 <div class="kicker">Facturation électronique</div><h2>Préparez votre entreprise à la nouvelle facturation.</h2>
 <p>Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Octave est pensé pour faire évoluer votre gestion des factures sans multiplier les outils.</p>
+<div class="billing-logo">
+<img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/facturation_logo.webp" alt="Facturation électronique">
+</div>
 <div class="badges"><span class="badge">Facturation électronique</span><span class="badge">Transmission électronique</span><span class="badge">Suivi des statuts</span><span class="badge">Factur-X</span></div>
 </div></div>
 </section>
