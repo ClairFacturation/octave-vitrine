@@ -278,12 +278,63 @@ h1{color:#FAF6F1}
   .hero-copy{color:#BDB6AF}
   .feature,.quote,.metric{background:linear-gradient(145deg,#191D20,#14181B)}
 }
+</style><style>
+/* === TARIFS OCTAVE === */
+.pricing-section{
+  background:
+    linear-gradient(180deg,#F7F2EC 0%,#FBF8F4 100%);
+  color:#18202A;
+  border-top:1px solid rgba(184,115,69,.18);
+  border-bottom:1px solid rgba(184,115,69,.18);
+}
+.pricing-section .kicker{color:#A9643D}
+.pricing-section h2{color:#18202A}
+.pricing-intro{color:#6D665F;max-width:680px;font-size:15px;line-height:1.75;margin:14px 0 0}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+.plan{
+  background:rgba(255,255,255,.92);
+  border:1px solid #DCE2EA;
+  border-radius:18px;
+  padding:28px 24px 24px;
+  min-height:360px;
+  display:flex;flex-direction:column;
+  box-shadow:0 12px 35px rgba(72,48,32,.06);
+}
+.plan.pro{
+  border:2px solid #B96F3D;
+  background:linear-gradient(180deg,#FFFDFB 0%,#FDF6EF 100%);
+  box-shadow:0 18px 45px rgba(184,115,69,.13);
+}
+.plan-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.plan h3{margin:0;color:#17202A;font-size:18px;letter-spacing:-.02em}
+.plan-badge{
+  font-size:10px;font-weight:700;color:#9B5C38;
+  background:#FBE9DA;border:1px solid #E8C4A9;
+  padding:7px 10px;border-radius:999px;white-space:nowrap
+}
+.price{display:flex;align-items:baseline;gap:7px;margin:18px 0 0;color:#13202C}
+.price strong{font-size:32px;letter-spacing:-.045em}
+.price span{font-size:14px;color:#6D7280}
+.users{font-size:12px;color:#777E89;margin-top:3px}
+.plan ul{margin:24px 0 25px;padding-left:21px;color:#53627A;display:grid;gap:10px;font-size:13px;line-height:1.45}
+.plan li::marker{color:#8A6B56}
+.plan .btn{margin-top:auto;width:max-content}
+.pricing-section .btn-ghost{
+  background:#F8F1EB;border-color:#E7D4C5;color:#8A5738
+}
+.pricing-section .btn-ghost:hover{background:#F3E6DC;border-color:#C99673}
+.plan .btn-primary{color:#fff}
+.stripe-note{
+  margin-top:18px;color:#71809A;font-size:11px;line-height:1.65
+}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pricing-grid{grid-template-columns:1fr}.plan{min-height:auto}.pricing-section{padding:78px 0}}
 </style></head>
 <body>
 <div id="app">
 <header class="nav"><div class="container nav-inner">
 <a class="brand" href="#top" aria-label="Octave accueil"><img class="logo-image" src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="brand-fallback">octave</span></a>
-<nav class="nav-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#faq">FAQ</a></nav>
+<nav class="nav-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></nav>
 <div class="nav-actions"><a class="btn btn-ghost" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Accéder à Octave</a><a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S’inscrire <span>→</span></a></div>
 </div></header>
 <main id="top">
@@ -309,6 +360,57 @@ h1{color:#FAF6F1}
 <section class="section alt"><div class="container"><div class="kicker">Une continuité naturelle</div><h2>Du premier contact à la facture.</h2><p class="section-intro" style="margin-top:16px">Chaque étape prépare la suivante, sans vous obliger à recopier les mêmes informations.</p><div class="process" style="margin-top:48px"><div class="step"><div class="step-num">01</div><h3>Chiffrer</h3><p>Créez votre devis à partir de vos prestations et de vos prix.</p></div><div class="step"><div class="step-num">02</div><h3>Faire avancer</h3><p>Une fois accepté, le projet devient votre espace chantier.</p></div><div class="step"><div class="step-num">03</div><h3>Documenter</h3><p>Photos, prise de cote, informations et documents restent au même endroit.</p></div><div class="step"><div class="step-num">04</div><h3>Facturer</h3><p>Retrouvez vos éléments et passez à la facturation avec beaucoup moins de ressaisie.</p></div></div></div></section>
 <section class="section" id="electronique"><div class="container"><div class="einvoice"><div class="einvoice-logo-wrap"><img class="einvoice-logo" src="https://api.valessonne.fr/public/images/dS03nUEQZFh-ggf/medium-169/facturation-electronique-seul-rvb-png" alt="Facturation électronique" loading="lazy"></div><span class="badge">◆ Prêt pour la facturation électronique</span><h2>La réforme arrive. Votre logiciel aussi doit être prêt.</h2><p>Octave est conçu pour s'intégrer dans le nouveau paysage de la facturation électronique. L'objectif : continuer à facturer depuis votre outil, avec des flux électroniques adaptés à la réforme et sans bouleverser vos habitudes.</p><div class="format-row"><span class="format">Factur-X</span><span class="format">Formats structurés</span><span class="format">Transmission électronique</span><span class="format">Suivi des statuts</span></div></div></div></section>
 <section class="section alt"><div class="container testimonial"><div class="quote"><p>« Un bon logiciel ne devrait pas vous demander de penser comme lui. Il devrait comprendre la façon dont votre entreprise travaille. »</p><small>La philosophie Octave — simplicité, terrain, continuité.</small></div><div class="metric"><strong>1</strong><span>seul environnement pour rapprocher votre activité commerciale, vos chantiers et votre facturation.</span></div></div></section>
+<section class="section pricing-section" id="tarifs">
+<div class="container">
+  <div class="section-head">
+    <div>
+      <div class="kicker">Des forfaits simples</div>
+      <h2>Commencez gratuitement. Évoluez quand votre activité grandit.</h2>
+      <p class="pricing-intro">Choisissez le niveau d’Octave qui correspond à votre façon de travailler. Vous pouvez démarrer avec l’essentiel puis passer à une offre plus complète lorsque vous en avez besoin.</p>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <article class="plan">
+      <div class="plan-top"><h3>Octave Gratuit</h3></div>
+      <div class="price"><strong>0 €</strong><span>/ mois</span></div>
+      <div class="users">1 utilisateur</div>
+      <ul>
+        <li>Jusqu’à 5 devis et factures au total par mois</li>
+        <li>Gestion des clients et du catalogue</li>
+        <li>Sans facturation électronique</li>
+        <li>Sans photos chantier</li>
+      </ul>
+      <a class="btn btn-ghost" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir ce forfait</a>
+    </article>
+
+    <article class="plan pro">
+      <div class="plan-top"><h3>Pro</h3><span class="plan-badge">Forfait actuel</span></div>
+      <div class="price"><strong>17,99 €</strong><span>/ mois</span></div>
+      <div class="users">Jusqu’à 2 utilisateurs</div>
+      <ul>
+        <li>Devis et factures illimités</li>
+        <li>Facturation électronique via une plateforme agréée</li>
+        <li>Photos et relevés de chantier</li>
+        <li>Travail en équipe jusqu’à 2 utilisateurs</li>
+      </ul>
+      <a class="btn btn-ghost" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Forfait actuel</a>
+    </article>
+
+    <article class="plan">
+      <div class="plan-top"><h3>Équipe</h3></div>
+      <div class="price"><strong>29,99 €</strong><span>/ mois</span></div>
+      <div class="users">Jusqu’à 5 utilisateurs</div>
+      <ul>
+        <li>Toutes les fonctions de Pro</li>
+        <li>Travail en équipe jusqu’à 5 utilisateurs</li>
+        <li>Pour une petite équipe</li>
+      </ul>
+      <a class="btn btn-primary" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Passer à ce forfait</a>
+    </article>
+  </div>
+  <p class="stripe-note">Les forfaits payants utilisent Stripe. L’activation et l’historique des factures dépendent de la bonne réception des événements Stripe.</p>
+</div>
+</section>
 <section class="section" id="faq"><div class="container"><div class="section-head"><div><div class="kicker">Questions fréquentes</div><h2>Avant de vous lancer.</h2></div></div><div class="faq">
 <div class="faq-item open"><button class="faq-q"><span>Octave est-il accessible depuis un smartphone ?</span><span>−</span></button><div class="faq-a"><p>Oui, l'expérience est pensée pour être utilisable sur ordinateur comme sur les appareils mobiles, afin de retrouver les informations utiles au bureau comme sur le terrain.</p></div></div>
 <div class="faq-item"><button class="faq-q"><span>Puis-je prendre des photos directement depuis un chantier ?</span><span>+</span></button><div class="faq-a"><p>Oui. Les photos peuvent être intégrées au dossier du chantier afin de conserver une trace organisée de vos interventions et de l'avancement.</p></div></div>
