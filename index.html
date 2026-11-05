@@ -329,6 +329,273 @@ h1{color:#FAF6F1}
 }
 @media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.pricing-grid{grid-template-columns:1fr}.plan{min-height:auto}.pricing-section{padding:78px 0}}
+</style><style id="octave-final-redesign">
+/* ===== OCTAVE — REFONTE VISUELLE ===== */
+:root{
+  --oct-copper:#B87345;
+  --oct-copper-dark:#8E542F;
+  --oct-copper-light:#D99A68;
+  --oct-cream:#F7F3EE;
+  --oct-paper:#FFFDFC;
+  --oct-sand:#F1E9E1;
+  --oct-text:#24201D;
+  --oct-muted:#6F6862;
+  --oct-dark:#17191B;
+  --oct-dark-2:#222528;
+  --oct-border:#E5DCD4;
+}
+body{
+  background:var(--oct-paper);
+  color:var(--oct-text);
+  line-height:1.65;
+}
+body:before,body:after{display:none!important}
+#app{background:var(--oct-paper)}
+.container{width:min(1160px,calc(100% - 44px))}
+.nav{
+  background:rgba(255,253,251,.94);
+  border-bottom:1px solid rgba(90,62,44,.12);
+  backdrop-filter:blur(18px);
+}
+.nav-inner{height:76px}
+.brand .logo-image{
+  width:128px;height:38px;object-fit:contain;
+  filter:drop-shadow(0 4px 12px rgba(120,75,43,.12));
+}
+.brand small{display:none!important}
+.nav-links{color:#6C625B}
+.nav-links a:hover{color:var(--oct-copper-dark)}
+.btn{
+  border-radius:10px;
+  padding:11px 18px;
+  font-weight:650;
+}
+.btn-ghost{
+  color:#4D433C;
+  background:#FFFDFC;
+  border-color:#DCCFC4;
+}
+.btn-ghost:hover{background:#F8F0E9;border-color:#C79A78}
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,#8F5532,#C47D4C 55%,#9B5E38);
+  border-color:#B87549;
+  box-shadow:0 8px 24px rgba(142,84,47,.20);
+}
+.btn-primary:hover{box-shadow:0 12px 30px rgba(142,84,47,.28)}
+
+.hero{
+  padding:88px 0 92px;
+  background:
+    radial-gradient(600px 420px at 83% 10%,rgba(184,115,69,.18),transparent 65%),
+    linear-gradient(180deg,#17191B 0%,#222629 100%);
+  color:#F8F4EF;
+}
+.hero:before,.hero:after{display:none}
+.hero-grid{grid-template-columns:1fr .95fr;gap:64px}
+.eyebrow{
+  color:#E4AE82;
+  background:rgba(184,115,69,.13);
+  border-color:rgba(224,160,111,.35);
+}
+h1{
+  font-size:clamp(46px,6vw,76px);
+  font-weight:700;
+  letter-spacing:-.06em;
+  color:#FCF8F3;
+}
+h1 em{color:#D99A68}
+.hero-copy{color:#C9C0B8}
+.trust{color:#AFA59D}
+.trust strong{color:#E1D4CA}
+.hero-visual{filter:drop-shadow(0 30px 50px rgba(0,0,0,.22))}
+.dashboard{
+  transform:none;
+  border-radius:18px;
+  background:linear-gradient(145deg,#24292D,#171A1D);
+  border:1px solid rgba(224,160,111,.24);
+  box-shadow:0 30px 70px rgba(0,0,0,.35);
+}
+.dashboard:before,.dashboard:after{display:none}
+.dash-top{height:40px}
+.dash-body{min-height:420px}
+.stat,.chart,.activity-card{
+  background:#202529;
+  border-color:rgba(255,255,255,.09);
+}
+.stat-value{color:#F7F1EA}
+.side-item.active{background:rgba(184,115,69,.19);color:#E2A174}
+
+.section{
+  padding:104px 0;
+  background:#FFFDFC;
+  color:var(--oct-text);
+}
+.section.alt{
+  background:var(--oct-sand);
+  border:0;
+}
+.section:before{display:none}
+.kicker{color:var(--oct-copper-dark)}
+.section h2{
+  color:#25211E;
+  font-weight:680;
+}
+.section-intro{color:var(--oct-muted)}
+.feature-grid{gap:20px}
+.feature{
+  min-height:235px;
+  background:#FFFDFC;
+  border:1px solid var(--oct-border);
+  border-radius:16px;
+  box-shadow:0 12px 35px rgba(83,57,38,.055);
+}
+.feature:hover{
+  transform:translateY(-4px);
+  border-color:#D1A27E;
+  box-shadow:0 18px 45px rgba(83,57,38,.10);
+}
+.feature h3{color:#29231F}
+.feature p{color:#716A64}
+.icon{
+  background:#F5E9DF;
+  border-color:#E3C6AE;
+  color:var(--oct-copper-dark);
+}
+.split{gap:72px}
+.copy p{color:#6E6761}
+.check{color:#4F4842}
+.check-mark{
+  background:#F1E3D8;
+  color:var(--oct-copper-dark);
+}
+.phone-stage{
+  background:radial-gradient(circle at center,rgba(184,115,69,.13),transparent 58%);
+  border-radius:24px;
+}
+.phone{
+  background:#171A1C;
+  border-color:#8C837B;
+  box-shadow:0 25px 65px rgba(63,43,29,.25);
+}
+.phone-screen{background:linear-gradient(155deg,#24292C,#15181A)}
+.float-card{
+  background:#FFFDFC;
+  color:#29231F;
+  border-color:#E4D8CE;
+  box-shadow:0 16px 40px rgba(63,43,29,.12);
+}
+.float-card strong{color:#29231F}
+.process{
+  border-top:1px solid #DDD2C8;
+}
+.step{
+  border-color:#DDD2C8;
+}
+.step h3{color:#29231F}
+.step p{color:#716A64}
+.step-num{color:var(--oct-copper-dark)}
+
+.einvoice{
+  background:linear-gradient(135deg,#24211E 0%,#17191B 100%);
+  border:1px solid rgba(184,115,69,.35);
+  box-shadow:0 22px 60px rgba(67,44,28,.13);
+}
+.einvoice h2{color:#FBF7F2}
+.einvoice p{color:#C2B9B1}
+.format{
+  background:rgba(184,115,69,.12);
+  border-color:rgba(224,160,111,.25);
+  color:#E5D9D0;
+}
+.testimonial{gap:20px}
+.quote,.metric{
+  background:#FFFDFC;
+  border:1px solid var(--oct-border);
+  box-shadow:0 12px 35px rgba(83,57,38,.055);
+}
+.quote p{color:#302A26}
+.quote small{color:#716A64}
+.metric strong{color:var(--oct-copper-dark)}
+.metric span{color:#716A64}
+
+#tarifs{
+  background:
+    linear-gradient(180deg,#F5EEE8 0%,#FFFDFC 100%);
+  border-top:1px solid #E5D9CF;
+  border-bottom:1px solid #E5D9CF;
+}
+#tarifs .section-head{margin-bottom:36px}
+.pricing-intro{color:#6F6862!important}
+.plan{
+  background:#FFFDFC;
+  border:1px solid #DED3CA;
+  box-shadow:0 12px 38px rgba(83,57,38,.07);
+}
+.plan.pro{
+  background:linear-gradient(180deg,#FFFDFC 0%,#FCF2E9 100%);
+  border:2px solid var(--oct-copper);
+  box-shadow:0 18px 45px rgba(184,115,69,.16);
+}
+.plan h3,.price,.plan .users{color:#25211E}
+.plan .users{color:#7A726B}
+.plan ul{color:#5E5751}
+.plan ul li::marker{color:var(--oct-copper-dark)}
+.plan-badge{color:#8E542F;background:#F9E8DA;border-color:#E7C5AB}
+.pricing-section .btn-ghost{
+  color:#8E542F;
+  background:#F8EEE7;
+  border-color:#E6D1C1;
+}
+.stripe-note{color:#817870}
+
+.faq{max-width:880px}
+.faq-item{border-color:#DDD3CA}
+.faq-q{color:#302A26}
+.faq-a{color:#716A64}
+.faq-q span:last-child{color:var(--oct-copper-dark)}
+
+.cta{
+  background:#F1E9E1;
+  padding:96px 0;
+}
+.cta-box{
+  background:linear-gradient(135deg,#24211E,#17191B);
+  border:1px solid rgba(184,115,69,.38);
+  box-shadow:0 25px 70px rgba(67,44,28,.14);
+}
+.cta h2{color:#FCF8F3}
+.cta p{color:#C3BAB2}
+.cta-note{color:#A69B92}
+
+.footer{
+  background:#17191B;
+  border:0;
+  color:#938A82;
+}
+.footer-brand{color:#E2D8D0}
+.footer-links a:hover{color:#D99A68}
+
+/* sections de respiration */
+#fonctionnalites{background:#FFFDFC}
+#chantier{background:#F1E9E1}
+#electronique{background:#FFFDFC}
+#tarifs{background:#F4ECE5}
+#faq{background:#FFFDFC}
+
+/* mobile */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:45px}
+  .hero{padding:70px 0 75px}
+}
+@media(max-width:620px){
+  .container{width:calc(100% - 28px)}
+  .hero{padding:56px 0 62px}
+  h1{font-size:45px}
+  .section{padding:76px 0}
+  .section h2{font-size:35px}
+  .plan{padding:24px 20px}
+}
 </style></head>
 <body>
 <div id="app">
