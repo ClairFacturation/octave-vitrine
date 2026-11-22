@@ -2,336 +2,602 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Octave — La gestion qui suit votre activité</title>
-<meta name="description" content="Octave réunit devis, factures, clients, chantiers, photos et prise de cote dans une expérience simple pensée pour les professionnels du terrain.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cantara — Devis, factures et paiement en ligne pour artisans et indépendants</title>
+<meta name="description" content="Cantara, le logiciel de devis et factures pensé pour les artisans et indépendants : devis signés en ligne, paiement par carte, relances automatiques, suivi de chantier et facturation électronique. Gratuit pour commencer.">
+<meta name="theme-color" content="#0f1113">
+<link rel="canonical" href="https://cantara-app.fr/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cantara — Vos devis et factures, payés plus vite">
+<meta property="og:description" content="Devis signés en ligne, paiement par carte, relances automatiques et suivi de chantier. Gratuit pour commencer.">
+<meta property="og:url" content="https://cantara-app.fr/">
+<meta property="og:image" content="https://cantara-app.fr/assets/cantara-logo.webp">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap">
 <style>
 :root{
-  --ink:#202326;
-  --ink-2:#2c3033;
-  --muted:#6f767b;
-  --paper:#f7f7f5;
-  --white:#fff;
-  --silver:#e5e7e7;
-  --silver-2:#cfd3d4;
-  --copper:#b86f3f;
-  --copper-2:#d39a6d;
-  --copper-3:#8e4f2d;
-  --dark:#202326;
-  --dark-2:#151718;
-  --max:1240px;
-  --radius:18px;
-  --shadow:0 22px 70px rgba(27,30,32,.09);
-  --ease:cubic-bezier(.2,.7,.2,1);
+  --ink:#0f1113;--ink-2:#171a1d;--ink-3:#22262b;
+  --text:#1b1f24;--muted:#5d6571;--line:#e7e2dc;
+  --bg:#f7f4f0;--card:#fff;
+  --cu-1:#f6b27a;--cu-2:#e9853a;--cu-3:#b55a22;--cu-4:#7d3b14;
+  --copper:linear-gradient(135deg,#f6b27a 0%,#e9853a 42%,#b55a22 78%,#8a4519 100%);
+  --radius:22px;
+  --shadow:0 30px 80px -30px rgba(20,14,8,.35);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.16;background:repeating-linear-gradient(112deg,transparent 0 8px,rgba(0,0,0,.035) 9px,transparent 10px 18px)}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-.container{width:min(var(--max),calc(100% - 48px));margin:auto}
-.header{position:sticky;top:0;z-index:100;background:rgba(27,29,30,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
-.header-inner{height:76px;display:flex;align-items:center;gap:36px}
-.logo{display:flex;align-items:center;width:145px;flex:none}
-.logo img{width:100%;height:auto;max-height:43px;object-fit:contain;object-position:left center}
-.nav{display:flex;justify-content:center;gap:30px;flex:1}
-.nav a{font-size:13px;color:#c9cdce;transition:color .2s ease}
-.nav a:hover{color:#fff}
-.header-actions{display:flex;gap:10px;flex:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:47px;padding:0 19px;border-radius:10px;border:1px solid transparent;font-size:13px;font-weight:700;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font:400 16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Inter Tight",Inter,sans-serif;letter-spacing:-.035em;line-height:1.05;margin:0}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cu-3)}
+.eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:var(--copper)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:14px;font:600 16px/1 Inter,sans-serif;text-decoration:none;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;cursor:pointer;white-space:nowrap}
 .btn:hover{transform:translateY(-2px)}
-.btn-copper{color:#fff;background:linear-gradient(135deg,#9c5a31,#c17b4b 48%,#9b592f);border-color:#d19a70;box-shadow:0 12px 30px rgba(184,111,63,.22)}
-.btn-copper:hover{box-shadow:0 17px 38px rgba(184,111,63,.31)}
-.btn-outline{color:#25282a;background:#fff;border-color:#d8dbdc}
-.btn-outline-dark{color:#fff;background:transparent;border-color:rgba(255,255,255,.18)}
-.hero{background:var(--white);border-bottom:1px solid #e0e2e2}
-.hero-inner{min-height:760px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:72px;padding:78px 0 92px}
-.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--copper-3);font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
-.kicker:before{content:"";width:24px;height:1px;background:var(--copper)}
-h1,h2,h3{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.045em}
-h1{font-size:clamp(50px,6.4vw,82px);line-height:.99;font-weight:750;margin:23px 0 26px;max-width:760px}
-h1 em{font-style:normal;color:var(--copper)}
-.lead{font-size:17px;line-height:1.85;color:var(--muted);max-width:660px;margin:0 0 31px}
-.actions{display:flex;gap:11px;flex-wrap:wrap}
-.microproof{display:flex;gap:26px;flex-wrap:wrap;margin-top:27px;color:#7a8084;font-size:11px}
-.microproof span:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--copper);margin:0 8px 2px 0}
-.hero-visual{position:relative}
-.hero-visual-image{position:relative;background:#17191a;border:1px solid #343739;border-radius:22px;box-shadow:0 38px 100px rgba(24,26,27,.18);overflow:hidden}
-.hero-visual-image img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover}
-.hero-visual-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.04),transparent 38%,rgba(184,111,63,.08));mix-blend-mode:screen}
-.app-frame{background:#191b1c;border:1px solid #3a3d3f;border-radius:22px;box-shadow:0 38px 100px rgba(24,26,27,.22);overflow:hidden;transform:perspective(1400px) rotateY(-3deg)}
-.frame-top{height:42px;display:flex;align-items:center;gap:7px;padding:0 15px;border-bottom:1px solid rgba(255,255,255,.07)}
-.frame-top i{width:7px;height:7px;border-radius:50%;background:#666a6b}
-.app{display:grid;grid-template-columns:120px 1fr;min-height:500px}
-.app-side{padding:24px 12px;border-right:1px solid rgba(255,255,255,.07)}
-.app-name{color:#fff;font-weight:800;font-size:12px;margin:0 9px 26px}
-.app-nav{font-size:9px;color:#858a8c;padding:9px 9px;border-radius:8px;margin-bottom:4px}
-.app-nav.active{color:#e7bd9d;background:rgba(184,111,63,.14);border:1px solid rgba(184,111,63,.28)}
-.app-main{padding:28px}
-.app-head{display:flex;justify-content:space-between;gap:20px}
-.app-head strong{font-size:18px;color:#f6f5f3}
-.app-head small{display:block;color:#7c8184;font-size:9px;margin-top:4px}
-.live{font-size:8px;color:#d6a07a;border:1px solid rgba(184,111,63,.4);padding:7px 10px;border-radius:100px;height:max-content}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:23px}
-.kpi{padding:15px;border:1px solid rgba(255,255,255,.075);border-radius:12px;background:rgba(255,255,255,.025)}
-.kpi small{display:block;color:#858a8c;font-size:7px}
-.kpi strong{display:block;color:#f6f5f3;font-size:20px;margin-top:6px;letter-spacing:-.04em}
-.kpi span{display:block;color:#8eaa90;font-size:7px;margin-top:3px}
-.chart{margin-top:10px;border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:15px}
-.chart-top{display:flex;justify-content:space-between;color:#858a8c;font-size:7px}
-.bars{height:150px;display:flex;align-items:end;gap:10px;padding:18px 7px 0}
-.bars i{flex:1;display:block;background:linear-gradient(180deg,#d59a6b,#81502f);border-radius:4px 4px 0 0}
-.lower{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.lower>div{border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:14px}
-.lower small{color:#858a8c;font-size:7px}
-.lower p{display:flex;justify-content:space-between;color:#d0d2d2;font-size:8px;margin:10px 0 0}
-.lower b{color:#d39a6d}
-.section{padding:108px 0}
-.section-white{background:#fff}
-.section-silver{background:linear-gradient(135deg,#eef0ef,#fafafa);border-top:1px solid #dfe2e2;border-bottom:1px solid #dfe2e2}
-.section-dark{background:linear-gradient(135deg,#25282a 0%,#17191a 100%);color:#fff}
-.section-head{display:grid;grid-template-columns:1fr .72fr;gap:70px;align-items:end;margin-bottom:50px}
-.section-head h2{font-size:clamp(37px,4.5vw,58px);line-height:1.03;font-weight:750;margin:13px 0 0}
-.section-head p{color:var(--muted);font-size:15px;line-height:1.85;margin:0}
-.section-dark .section-head p{color:#adb2b4}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:#fff;border:1px solid #dfe2e2;border-radius:var(--radius);padding:31px;min-height:235px;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
-.card:hover{transform:translateY(-5px);border-color:#c88b63;box-shadow:0 20px 50px rgba(33,36,38,.08)}
-.card-icon{width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,#25282a,#3c3f41);color:#d69a6b;display:grid;place-items:center;font-size:13px;font-weight:800;margin-bottom:25px}
-.card h3{font-size:19px;margin:0 0 9px;font-weight:720}
-.card p{margin:0;color:#70777b;font-size:13px;line-height:1.75}
-.field{display:grid;grid-template-columns:.85fr 1.15fr;gap:100px;align-items:center}
-.field-copy h2{font-size:clamp(38px,4.5vw,58px);line-height:1.03;margin:14px 0 22px}
-.field-copy p{color:var(--muted);font-size:15px;line-height:1.85;max-width:570px}
-.list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:29px}
-.list div{font-size:12px;color:#555d62;display:flex;gap:10px}
-.list b{color:var(--copper)}
-.mobile-stage{height:520px;position:relative;display:grid;place-items:center}
-.mobile-stage:before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,#d9dddc,rgba(217,221,220,.25) 48%,transparent 70%)}
-.phone{position:relative;width:244px;height:490px;border:6px solid #252729;border-radius:37px;background:#101213;padding:8px;box-shadow:0 35px 80px rgba(31,34,35,.2)}
-.phone-screen{height:100%;border-radius:28px;background:#f6f7f6;padding:0;overflow:hidden}.phone-screen img{display:block;width:100%;height:100%;object-fit:cover}
-.phone-brand{font-size:11px;color:var(--copper);font-weight:900}
-.phone-title{font-size:17px;font-weight:800;margin:7px 0 13px}
-.p-card{background:#fff;border:1px solid #e1e3e2;border-radius:12px;padding:11px;margin-bottom:9px;box-shadow:0 7px 18px rgba(31,34,35,.05)}
-.p-card small{font-size:7px;color:#909598;display:block}
-.p-card strong{font-size:10px;display:block;margin-top:5px}
-.p-photo{height:98px;border-radius:8px;margin-top:9px;background:linear-gradient(135deg,#969a9b,#d6d8d8 52%,#9da1a2);position:relative;overflow:hidden}
-.p-photo:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(112deg,transparent 0 8px,rgba(255,255,255,.2) 9px,transparent 11px 18px)}
-.measure-line{position:absolute;left:18px;right:18px;top:48px;border-top:2px solid var(--copper);z-index:2}
-.float{position:absolute;background:#fff;border:1px solid #dfe2e2;border-radius:12px;padding:12px 14px;box-shadow:0 18px 45px rgba(32,35,36,.12);font-size:9px;color:#7b8184}
-.float strong{display:block;color:#2a2d2f;font-size:11px;margin-bottom:2px}
-.float.a{right:0;top:72px}.float.b{left:0;bottom:45px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #dfe2e2}
-.step{padding:29px 24px 0;border-right:1px solid #dfe2e2}
-.step:first-child{padding-left:0}.step:last-child{border-right:0}
-.step-num{color:var(--copper);font-size:10px;font-weight:900;letter-spacing:.12em}
-.step h3{font-size:20px;margin:20px 0 9px}
-.step p{font-size:12px;color:#70777b;line-height:1.75;margin:0}
-.dark-content{max-width:820px}
-.dark-content h2{font-size:clamp(38px,4.5vw,58px);line-height:1.03;margin:15px 0 21px;color:#fff}
-.dark-content p{color:#b9bdbe;font-size:15px;line-height:1.85;max-width:760px}
-.billing-logo{margin-top:30px;display:inline-flex;align-items:center;justify-content:center;padding:15px 20px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 34px rgba(0,0,0,.12)}
-.billing-logo img{display:block;width:auto;max-width:240px;max-height:70px;object-fit:contain}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
-.badge{padding:9px 12px;border-radius:999px;border:1px solid rgba(211,154,109,.3);background:rgba(184,111,63,.1);color:#d9a57d;font-size:9px;font-weight:800}
-.pricing{background:#f0f1f0;border-top:1px solid #dfe2e2}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.plan{background:#fff;border:1px solid #dfe2e2;border-radius:19px;padding:30px;display:flex;flex-direction:column;min-height:430px}
-.plan.pro{border:1.5px solid var(--copper);box-shadow:0 22px 60px rgba(184,111,63,.12)}
-.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.plan h3{font-size:21px;margin:0}
-.current{font-size:8px;color:#8e552f;background:#f3e4d8;border:1px solid #e4c6b1;padding:7px 9px;border-radius:999px;font-weight:800}
-.price{display:flex;align-items:baseline;gap:6px;margin-top:22px}
-.price strong{font-size:39px;letter-spacing:-.05em}
-.price span{font-size:11px;color:#777e82}
-.users{font-size:11px;color:#858b8e}
-.plan ul{list-style:none;padding:0;margin:25px 0 28px;display:grid;gap:12px;flex:1}
-.plan li{position:relative;padding-left:18px;color:#5e666b;font-size:12px;line-height:1.5}
-.plan li:before{content:"✓";position:absolute;left:0;color:var(--copper);font-weight:900}
-.note{font-size:9px;color:#7e8588;margin-top:17px}
-.faq{max-width:900px;margin:auto;border-top:1px solid #dfe2e2}
-.faq-row{border-bottom:1px solid #dfe2e2}
-.faq-btn{width:100%;background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;gap:20px;text-align:left;color:#25282a;font-size:14px;font-weight:720;cursor:pointer}
-.faq-btn span:last-child{color:var(--copper);font-size:20px}
-.answer{display:none;padding:0 45px 22px 0;color:#71787c;font-size:13px;line-height:1.8}
-.faq-row.open .answer{display:block}
-.cta{padding:0 0 105px;background:#fff}
-.cta-box{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(125deg,#26292b,#151718);padding:62px;color:#fff;border:1px solid #393c3e}
-.cta-box:after{content:"";position:absolute;width:520px;height:520px;right:-280px;top:-300px;border-radius:50%;background:radial-gradient(circle,rgba(184,111,63,.3),transparent 68%)}
-.cta-box>*{position:relative;z-index:2}
-.cta-box h2{font-size:clamp(37px,4.5vw,58px);line-height:1.03;max-width:720px;margin:13px 0 18px}
-.cta-box p{max-width:620px;color:#b9bdbe;font-size:14px;margin:0 0 26px}
-.cta-small{font-size:9px;color:#858b8d;margin-top:14px}
-.footer{background:#17191a;color:#969b9e;border-top:1px solid #303335}
-.footer-inner{min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:9px}
-.footer-logo{font-weight:900;color:#fff;font-size:15px}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a:hover{color:#fff}
-@media(max-width:980px){
- .nav{gap:18px}.nav a{font-size:11px}
- .hero-inner,.field,.section-head{grid-template-columns:1fr;gap:45px}
- .hero-inner{padding:62px 0 76px}
- .hero-visual{max-width:760px}
- .cards,.plans{grid-template-columns:1fr 1fr}
- .section-head{margin-bottom:38px}
+.btn-cu{color:#fff;background:var(--copper);box-shadow:0 12px 30px -10px rgba(233,133,58,.65),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-cu:hover{box-shadow:0 18px 40px -12px rgba(233,133,58,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-ghost{color:#fff;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-dark{color:#fff;background:var(--ink)}
+.btn-line{color:var(--text);border-color:var(--line);background:#fff}
+.btn svg{width:18px;height:18px}
+
+/* Header */
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s ease,box-shadow .3s ease,border-color .3s ease;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(15,17,19,.82);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-color:rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.brand img{height:34px;width:auto}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:rgba(255,255,255,.78);text-decoration:none;font-size:15px;font-weight:500}
+.nav a:hover{color:#fff}
+.top-cta{display:flex;align-items:center;gap:12px}
+.top-cta .login{color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:10px 6px}
+.top-cta .btn{min-height:44px;padding:0 18px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;align-items:center;justify-content:center}
+.burger svg{width:22px;height:22px}
+.mnav{display:none}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:150px 0 110px}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto auto;width:900px;height:900px;background:radial-gradient(closest-side,rgba(233,133,58,.30),rgba(233,133,58,0));pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto auto -40% -20%;width:800px;height:800px;background:radial-gradient(closest-side,rgba(190,196,204,.10),rgba(190,196,204,0));pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.05);font-size:13.5px;color:rgba(255,255,255,.85)}
+.pill b{padding:3px 9px;border-radius:999px;background:var(--copper);color:#fff;font-size:11.5px;letter-spacing:.04em}
+.hero h1{font-size:clamp(44px,6.3vw,80px);margin:26px 0 24px}
+.hero h1 em{font-style:normal;background:var(--copper);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.72);max-width:560px;margin:0 0 36px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+.hero .assure{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-size:14px;color:rgba(255,255,255,.62)}
+.hero .assure span{display:inline-flex;align-items:center;gap:8px}
+.hero .assure svg{width:16px;height:16px;color:var(--cu-1)}
+
+/* Phone mockup */
+.stage{position:relative;justify-self:center;width:min(380px,100%)}
+.phone{position:relative;border-radius:46px;padding:12px;background:linear-gradient(160deg,#3a3f45,#15171a 40%,#2a2e33);box-shadow:0 60px 120px -40px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.08)}
+.screen{border-radius:36px;overflow:hidden;background:#f4f1ee;color:#1b1f24;aspect-ratio:9/19}
+.sc-top{display:flex;align-items:center;justify-content:space-between;padding:22px 18px 10px}
+.sc-top img{height:24px}
+.sc-av{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#c58b68,#7b4632);color:#fff;font:700 12px/32px Inter;text-align:center}
+.sc-hi{padding:4px 18px 12px}
+.sc-hi small{font-size:11px;color:#7a828d}
+.sc-hi div{font:700 19px/1.2 "Inter Tight",sans-serif;letter-spacing:-.02em}
+.sc-hi div span{color:#a9643c}
+.sc-card{margin:0 14px;padding:16px;border-radius:20px;color:#fff;background:linear-gradient(140deg,#d9a27c 0%,#b9744c 45%,#7d4426 100%);box-shadow:0 14px 30px -14px rgba(125,68,38,.7)}
+.sc-card small{font-size:11px;opacity:.85}
+.sc-card strong{display:block;font:800 30px/1.1 "Inter Tight",sans-serif;margin:4px 0 12px;letter-spacing:-.03em}
+.sc-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sc-mini div{padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.16);font-size:10px}
+.sc-mini b{display:block;font-size:13px;margin-top:2px}
+.sc-qa{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 14px 8px}
+.sc-qa div{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#3a3f46}
+.sc-qa i{width:40px;height:40px;border-radius:13px;background:#fff;box-shadow:0 4px 10px -6px rgba(0,0,0,.25);display:grid;place-items:center}
+.sc-qa svg{width:18px;height:18px;color:#7d4426}
+.sc-list{margin:6px 14px 0;border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 4px 14px -10px rgba(0,0,0,.25)}
+.sc-row{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:1px solid #f0ece8;font-size:11.5px}
+.sc-row:last-child{border:0}
+.sc-row i{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;flex:0 0 28px}
+.sc-row b{display:block;font-size:12px}
+.sc-row span{color:#7a828d;font-size:10.5px}
+.sc-row em{margin-left:auto;font-style:normal;font-weight:700;font-size:11.5px}
+.float{position:absolute;display:flex;align-items:center;gap:12px;padding:12px 16px 12px 12px;border-radius:18px;background:rgba(255,255,255,.96);color:#1b1f24;box-shadow:0 24px 50px -18px rgba(0,0,0,.55);font-size:13px;line-height:1.35;animation:bob 6s ease-in-out infinite}
+.float i{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:0 0 38px}
+.float i svg{width:20px;height:20px}
+.float b{display:block;font-size:13.5px}
+.float span{color:#6b737e;font-size:12px}
+.f1{left:-96px;top:3%}
+.f2{right:-60px;bottom:16%;animation-delay:-3s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.ok{background:#e7f6ee;color:#1f8a52}
+.cu{background:#fdeee2;color:#b55a22}
+
+/* Trust strip */
+.trades{background:var(--ink-2);color:rgba(255,255,255,.6);border-top:1px solid rgba(255,255,255,.06)}
+.trades .wrap{display:flex;align-items:center;gap:18px 34px;flex-wrap:wrap;justify-content:center;padding:26px 0;font-size:14.5px}
+.trades strong{color:#fff;font-weight:600}
+.trades span{display:inline-flex;align-items:center;gap:8px}
+.trades span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper)}
+
+/* Sections */
+section{scroll-margin-top:80px}
+.sec{padding:120px 0}
+.head{max-width:720px;margin-bottom:56px}
+.head.center{margin-inline:auto;text-align:center}
+.head h2{font-size:clamp(34px,4.4vw,56px);margin:16px 0 18px}
+.head p{font-size:18px;color:var(--muted);margin:0}
+
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{position:relative;padding:30px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.feat:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#e3d6cb}
+.ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#fff4ea,#f6dcc6);color:var(--cu-3);margin-bottom:22px;box-shadow:inset 0 0 0 1px rgba(181,90,34,.12)}
+.ic svg{width:24px;height:24px}
+.feat h3{font-size:21px;letter-spacing:-.02em;margin-bottom:10px}
+.feat p{margin:0;color:var(--muted);font-size:15.5px}
+.tag{position:absolute;top:24px;right:24px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cu-3);background:#fdeee2;padding:5px 9px;border-radius:999px}
+
+/* Steps */
+.steps-sec{background:#fff;border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
+.step{position:relative;padding:34px 30px 30px;border-radius:var(--radius);background:var(--bg)}
+.step::before{counter-increment:s;content:"0" counter(s);display:block;font:800 15px "Inter Tight",Inter,system-ui,sans-serif;letter-spacing:.04em;background:var(--copper);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:26px}
+.step h3{font-size:23px;margin-bottom:10px;letter-spacing:-.02em}
+.step p{margin:0;color:var(--muted)}
+.step .mini{margin-top:22px;padding:14px;border-radius:14px;background:#fff;border:1px solid var(--line);font-size:13.5px;display:flex;align-items:center;gap:10px}
+.step .mini i{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;flex:0 0 30px}
+.step .mini i svg{width:16px;height:16px}
+.step .mini b{display:block;font-size:13.5px}
+.step .mini span{color:var(--muted);font-size:12.5px}
+
+/* Split (Chantier+) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.checks{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:16px}
+.checks li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px}
+.checks li i{flex:0 0 26px;width:26px;height:26px;border-radius:8px;background:var(--copper);display:grid;place-items:center;color:#fff;margin-top:1px}
+.checks li i svg{width:15px;height:15px}
+.checks li span{color:var(--muted);display:block;font-size:15px}
+.board{position:relative;padding:26px;border-radius:28px;background:var(--ink);box-shadow:var(--shadow);color:#fff}
+.board-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font-size:14px}
+.board-h b{font:700 18px "Inter Tight",Inter,system-ui,sans-serif;letter-spacing:-.02em}
+.board-h span{color:rgba(255,255,255,.55);font-size:13px}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ph{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden}
+.ph::after{content:attr(data-l);position:absolute;left:8px;top:8px;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:700;color:#fff;background:var(--c)}
+.ph.a{background:linear-gradient(160deg,#59606a,#2b2f35);--c:#5b6b85}
+.ph.b{background:linear-gradient(160deg,#8a6a52,#3d2c20);--c:#c97a2c}
+.ph.c{background:linear-gradient(160deg,#b9bfc6,#6d757e);--c:#2f8a57}
+.ph svg{position:absolute;inset:auto 0 0 0;width:100%;height:60%;opacity:.35}
+.report{margin-top:16px;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.report i{width:42px;height:42px;border-radius:12px;background:var(--copper);display:grid;place-items:center;flex:0 0 42px}
+.report i svg{width:20px;height:20px}
+.report b{display:block;font-size:14.5px}
+.report span{font-size:12.5px;color:rgba(255,255,255,.55)}
+.report em{margin-left:auto;font-style:normal;font-size:12.5px;font-weight:600;color:var(--cu-1)}
+
+/* E-invoicing */
+.einv{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.einv::before{content:"";position:absolute;right:-200px;top:-200px;width:700px;height:700px;background:radial-gradient(closest-side,rgba(233,133,58,.22),transparent);pointer-events:none}
+.einv .head p{color:rgba(255,255,255,.68)}
+.einv .eyebrow{color:var(--cu-1)}
+.timeline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tl{padding:28px;border-radius:var(--radius);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.tl small{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cu-1);margin-bottom:12px}
+.tl h3{font-size:22px;margin-bottom:10px;letter-spacing:-.02em}
+.tl p{margin:0;color:rgba(255,255,255,.65);font-size:15px}
+.tl.now{background:linear-gradient(160deg,rgba(233,133,58,.18),rgba(255,255,255,.03));border-color:rgba(246,178,122,.35)}
+.src{margin-top:22px;font-size:13px;color:rgba(255,255,255,.45)}
+.src a{color:rgba(255,255,255,.65)}
+
+/* Pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;padding:34px 30px 30px;border-radius:26px;background:#fff;border:1px solid var(--line)}
+.plan h3{font-size:22px;letter-spacing:-.02em}
+.plan .for{color:var(--muted);font-size:14.5px;margin:6px 0 22px}
+.price{display:flex;align-items:baseline;gap:6px;margin-bottom:24px}
+.price b{font:800 46px/1 "Inter Tight",Inter,system-ui,sans-serif;letter-spacing:-.04em}
+.price span{color:var(--muted);font-size:15px}
+.plan ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px;flex:1}
+.plan li{display:flex;gap:10px;font-size:15px;align-items:flex-start}
+.plan li svg{flex:0 0 18px;width:18px;height:18px;color:var(--cu-3);margin-top:3px}
+.plan li.no{color:#9aa1aa}
+.plan li.no svg{color:#c4c8ce}
+.plan .btn{width:100%}
+.plan.best{background:var(--ink);color:#fff;border-color:transparent;box-shadow:0 40px 90px -40px rgba(15,17,19,.8);transform:translateY(-10px)}
+.plan.best .for,.plan.best .price span{color:rgba(255,255,255,.6)}
+.plan.best li svg{color:var(--cu-1)}
+.badge{position:absolute;top:-13px;left:30px;padding:6px 12px;border-radius:999px;background:var(--copper);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em}
+.plan-note{text-align:center;color:var(--muted);font-size:14px;margin-top:28px}
+
+/* FAQ */
+.faq{max-width:840px;margin-inline:auto;display:grid;gap:12px}
+.faq details{border-radius:18px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:22px 26px;font:600 17.5px/1.4 Inter;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:#f4ece5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b55a22' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center/14px no-repeat;transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 26px 24px;color:var(--muted);font-size:16px}
+
+/* Final CTA */
+.final{padding:0 0 120px}
+.final .box{position:relative;overflow:hidden;border-radius:34px;padding:80px 40px;text-align:center;background:var(--ink);color:#fff}
+.final .box::before{content:"";position:absolute;inset:auto -10% -60% -10%;height:420px;background:radial-gradient(closest-side,rgba(233,133,58,.35),transparent);pointer-events:none}
+.final h2{position:relative;font-size:clamp(34px,4.6vw,58px);margin-bottom:18px}
+.final p{position:relative;color:rgba(255,255,255,.7);font-size:18px;margin:0 auto 34px;max-width:560px}
+.final .ctas{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+
+/* Footer */
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:64px 0 40px;font-size:14.5px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot img{height:32px;width:auto;margin-bottom:16px}
+.foot h4{color:#fff;font-size:14px;margin:4px 0 14px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot a{text-decoration:none;color:rgba(255,255,255,.6)}
+.foot a:hover{color:#fff}
+.legal{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(255,255,255,.42)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.float{animation:none}html{scroll-behavior:auto}}
+
+/* Responsive */
+@media (max-width:1040px){
+  .hero .wrap{grid-template-columns:1fr;gap:70px}
+  .hero .copy{text-align:center}
+  .hero p.lead{margin-inline:auto}
+  .hero .ctas,.hero .assure{justify-content:center}
+  .f1{left:-30px;top:2%}.f2{right:-20px}
+  .grid6{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr;gap:50px}
+  .foot{grid-template-columns:1fr 1fr}
 }
-@media(max-width:700px){
- .container{width:calc(100% - 28px)}
- .header-inner{height:68px}.nav{display:none}.header-actions{margin-left:auto}.header-actions .btn-outline-dark{display:none}.logo{width:122px}
- .hero-inner{padding:48px 0 58px}.hero{overflow:hidden}
- h1{font-size:47px}.lead{font-size:15px}
- .microproof{display:grid;gap:8px}
- .app{grid-template-columns:76px 1fr;min-height:400px}.app-side{padding:20px 7px}.app-nav{font-size:7px;padding:8px 5px}.app-main{padding:18px 12px}
- .kpis{gap:5px}.kpi{padding:9px}.kpi strong{font-size:14px}.bars{height:100px;gap:5px}.lower{display:none}
- .section{padding:76px 0}.section-head h2,.field-copy h2,.dark-content h2{font-size:39px}
- .cards,.plans{grid-template-columns:1fr}.card{min-height:0}.list{grid-template-columns:1fr}
- .mobile-stage{height:485px}.phone{width:224px;height:455px}.float.a{right:-2px}.float.b{left:-2px}
- .steps{grid-template-columns:1fr 1fr}.step{padding:24px 14px 20px}.step:first-child{padding-left:0}.step:nth-child(odd){border-right:1px solid #dfe2e2}.step:nth-child(even){border-right:0}
- .cta{padding-bottom:75px}.cta-box{padding:40px 25px}.cta-box h2{font-size:38px}
- .footer-inner{padding:25px 0;align-items:flex-start;flex-direction:column}
+@media (max-width:860px){
+  .nav,.top-cta .login{display:none}
+  .burger{display:inline-flex}
+  .mnav.open{display:block;position:fixed;inset:76px 0 auto;z-index:49;background:rgba(15,17,19,.97);backdrop-filter:blur(14px);padding:12px 20px 24px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mnav a{display:block;color:#fff;text-decoration:none;font-size:18px;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mnav .btn{margin-top:18px;width:100%;border-bottom:0}
+  .steps,.timeline,.plans{grid-template-columns:1fr}
+  .plan.best{transform:none}
+  .sec{padding:90px 0}
+}
+@media (max-width:620px){
+  .wrap{width:min(1180px,100% - 32px)}
+  .hero{padding:120px 0 80px}
+  .top-cta .btn{display:none}
+  .grid6{grid-template-columns:1fr}
+  .hero .ctas .btn{width:100%}
+  .float{font-size:12px;padding:10px 12px 10px 10px}
+  .f1{left:-4px;top:-3%}.f2{right:-4px;bottom:6%}
+  .float i{width:32px;height:32px;flex-basis:32px}
+  .final .box{padding:60px 22px;border-radius:26px}
+  .foot{grid-template-columns:1fr}
+  .board{padding:18px}
+  .report em{display:none}
 }
 </style>
 </head>
 <body>
-<header class="header">
-<div class="container header-inner">
-<a class="logo" href="#top"><img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Logo-blanc.webp" alt="Octave"></a>
-<nav class="nav">
-<a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a>
-</nav>
-<div class="header-actions"><a class="btn btn-outline-dark" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Accéder à Octave</a><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire <span>→</span></a></div>
-</div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Cantara — accueil"><img src="/assets/cantara-logo-blanc.webp" alt="Cantara" width="160" height="40"></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#avantages">Avantages</a>
+      <a href="#chantier">Chantier+</a>
+      <a href="#facturation-electronique">Facturation électronique</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="top-cta">
+      <a class="login" href="https://app.cantara-app.fr/">Se connecter</a>
+      <a class="btn btn-cu" href="https://app.cantara-app.fr/?inscription=1">Essayer gratuitement</a>
+      <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mnav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
 </header>
+<nav class="mnav" id="mnav" aria-label="Menu mobile">
+  <a href="#avantages">Avantages</a>
+  <a href="#chantier">Chantier+</a>
+  <a href="#facturation-electronique">Facturation électronique</a>
+  <a href="#tarifs">Tarifs</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://app.cantara-app.fr/">Se connecter</a>
+  <a class="btn btn-cu" href="https://app.cantara-app.fr/?inscription=1">Essayer gratuitement</a>
+</nav>
 
-<main id="top">
-<section class="hero">
-<div class="container hero-inner">
-<div>
-<div class="kicker">Le logiciel de gestion pensé pour le terrain</div>
-<h1>Votre entreprise avance.<br><em>Octave aussi.</em></h1>
-<p class="lead">Devis, factures, clients, chantiers, photos et prise de cote : Octave réunit l'essentiel dans une expérience claire, rapide et pensée pour les professionnels qui travaillent autant sur le terrain qu'au bureau.</p>
-<div class="actions"><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Commencer gratuitement <span>→</span></a><a class="btn btn-outline" href="#tarifs">Voir les tarifs</a></div>
-<div class="microproof"><span>Un seul espace pour votre activité</span><span>PC, tablette & mobile</span><span>Pensé pour le terrain</span></div>
-</div>
-<div class="hero-visual">
-<div class="hero-visual-image">
-<img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/Capture-tableau.webp" alt="Aperçu du tableau de bord Octave">
-</div>
-<div class="app-frame" style="display:none">
-<div class="frame-top"><i></i><i></i><i></i></div>
-<div class="app">
-<aside class="app-side"><div class="app-name">octave</div><div class="app-nav active">◆ Tableau de bord</div><div class="app-nav">▣ Clients</div><div class="app-nav">◫ Devis</div><div class="app-nav">▤ Factures</div><div class="app-nav">⌂ Chantiers</div><div class="app-nav">◌ Planning</div><div style="height:1px;background:#292b2c;margin:14px 7px"></div><div class="app-nav">⚙ Réglages</div></aside>
-<div class="app-main">
-<div class="app-head"><div><strong>Bonjour, votre activité</strong><small>Vue d'ensemble de vos opérations</small></div><div class="live">Tout est à jour</div></div>
-<div class="kpis"><div class="kpi"><small>CA facturé</small><strong>48 920 €</strong><span>+12,4 % ce mois</span></div><div class="kpi"><small>Devis en attente</small><strong>18</strong><span>6 à relancer</span></div><div class="kpi"><small>Chantiers actifs</small><strong>14</strong><span>3 cette semaine</span></div></div>
-<div class="chart"><div class="chart-top"><span>Chiffre d'affaires</span><span>6 derniers mois</span></div><div class="bars"><i style="height:40%"></i><i style="height:54%"></i><i style="height:48%"></i><i style="height:68%"></i><i style="height:61%"></i><i style="height:88%"></i><i style="height:76%"></i></div></div>
-<div class="lower"><div><small>Dernières actions</small><p><span>Devis #DV-2048</span><b>Signé</b></p><p><span>Facture #FA-981</span><b>Envoyée</b></p></div><div><small>À faire aujourd'hui</small><p><span>Visite chantier</span><span>10:30</span></p><p><span>Relance devis</span><span>15:00</span></p></div></div>
-</div>
-</div>
-</div>
-</div>
+<main>
+<!-- HERO -->
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="copy">
+      <span class="pill"><b>NOUVEAU</b> Prêt pour la facturation électronique 2026</span>
+      <h1 id="h1">Vos devis signés.<br>Vos factures <em>payées.</em></h1>
+      <p class="lead">Cantara est le logiciel de devis et de factures des artisans et indépendants. Votre client accepte le devis en ligne, règle la facture par carte, et vous suivez vos chantiers depuis votre téléphone.</p>
+      <div class="ctas">
+        <a class="btn btn-cu" href="https://app.cantara-app.fr/?inscription=1">Commencer gratuitement
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#tarifs">Voir les tarifs</a>
+      </div>
+      <div class="assure">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Gratuit pour toujours</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Sans carte bancaire</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Sans engagement</span>
+      </div>
+    </div>
+
+    <div class="stage" aria-hidden="true">
+      <div class="phone">
+        <div class="screen">
+          <div class="sc-top"><img src="/assets/cantara-logo.webp" alt=""><div class="sc-av">AD</div></div>
+          <div class="sc-hi"><small>Lundi 7 septembre</small><div>Bonjour, <span>Atelier Durand</span></div></div>
+          <div class="sc-card">
+            <small>À encaisser</small>
+            <strong>3 480,00 €</strong>
+            <div class="sc-mini"><div>Facturé ce mois<b>8 920,00 €</b></div><div>Encaissé ce mois<b>5 440,00 €</b></div></div>
+          </div>
+          <div class="sc-qa">
+            <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></i>Devis</div>
+            <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></i>Facture</div>
+            <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>Client</div>
+            <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></i>Photo</div>
+          </div>
+          <div class="sc-list">
+            <div class="sc-row"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12l5 5 9-10"/></svg></i><div><b>Devis accepté</b><span>Salle de bain · M. Leroy</span></div><em>4 200 €</em></div>
+            <div class="sc-row"><i class="cu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></i><div><b>Facture payée par carte</b><span>FAC-2026-0042</span></div><em>1 280 €</em></div>
+            <div class="sc-row"><i style="background:#eef1f6;color:#4b5b75"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg></i><div><b>Relance envoyée</b><span>Automatiquement, à J+7</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="float f1"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></i><div><b>Devis accepté en ligne</b><span>il y a 2 min</span></div></div>
+      <div class="float f2"><i class="cu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></i><div><b>+ 1 280,00 € reçus</b><span>Paiement par carte</span></div></div>
+    </div>
+  </div>
 </section>
 
-<section class="section section-white" id="fonctionnalites">
-<div class="container">
-<div class="section-head"><div><div class="kicker">Un seul espace de travail</div><h2>Tout ce qu'il faut. Rien de superflu.</h2></div><p>Octave rapproche votre activité commerciale, vos clients, vos chantiers et votre facturation pour éviter les fichiers dispersés et la ressaisie.</p></div>
-<div class="cards">
-<article class="card"><div class="card-icon">01</div><h3>Devis professionnels</h3><p>Créez, personnalisez, dupliquez et envoyez vos devis avec vos prestations et vos tarifs.</p></article>
-<article class="card"><div class="card-icon">02</div><h3>Factures & suivi</h3><p>Transformez vos devis en factures et gardez une vision claire des documents envoyés et à relancer.</p></article>
-<article class="card"><div class="card-icon">03</div><h3>Gestion des chantiers</h3><p>Un dossier centralise les informations, documents, photos et relevés de chaque projet.</p></article>
-<article class="card"><div class="card-icon">04</div><h3>Photos chantier</h3><p>Prenez vos photos depuis le terrain et rattachez-les immédiatement au bon chantier.</p></article>
-<article class="card"><div class="card-icon">05</div><h3>Prise de cote</h3><p>Conservez vos mesures directement dans le dossier du chantier pour éviter les oublis et les allers-retours.</p></article>
-<article class="card"><div class="card-icon">06</div><h3>Suivi client</h3><p>Retrouvez les informations utiles et les étapes du projet au même endroit pour une relation plus fluide.</p></article>
+<div class="trades">
+  <div class="wrap"><strong>Pensé pour les pros du terrain</strong><span>Plombiers</span><span>Électriciens</span><span>Menuisiers</span><span>Peintres</span><span>Paysagistes</span><span>Indépendants</span></div>
 </div>
-</div>
+
+<!-- AVANTAGES -->
+<section class="sec" id="avantages" aria-labelledby="h-av">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Pourquoi Cantara</span>
+      <h2 id="h-av">Moins de paperasse.<br>Plus de chantiers.</h2>
+      <p>Tout ce qu'il faut pour chiffrer, facturer et être payé, sans tableur ni ressaisie. Simple dès la première minute.</p>
+    </div>
+    <div class="grid6">
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+        <h3>Des devis pros en 2 minutes</h3>
+        <p>Votre catalogue de prestations, vos tarifs, des modèles élégants à vos couleurs. Ajoutez un acompte en un clic.</p>
+      </article>
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Acceptés en ligne</h3>
+        <p>Votre client reçoit le devis par e-mail et l'accepte d'un clic. Vous êtes prévenu aussitôt, il n'y a plus qu'à démarrer.</p>
+      </article>
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div>
+        <h3>Payé plus vite</h3>
+        <p>Chaque facture peut inclure un bouton « Payer ma facture » par carte. L'argent arrive directement sur votre compte Stripe.</p>
+      </article>
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg></div>
+        <h3>Relances automatiques</h3>
+        <p>Fini les impayés oubliés : Cantara relance vos clients avant et après l'échéance, poliment et à votre place.</p>
+      </article>
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+        <h3>Un espace pour vos clients</h3>
+        <p>Chaque client retrouve ses devis et factures dans son espace en ligne, téléchargeables à tout moment. Moins d'appels, plus de confiance.</p>
+      </article>
+      <article class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Conforme, sans y penser</h3>
+        <p>Numérotation continue, mentions obligatoires, avoirs, TVA et autoliquidation : vos factures respectent les règles françaises.</p>
+      </article>
+    </div>
+  </div>
 </section>
 
-<section class="section section-silver" id="chantier">
-<div class="container field">
-<div class="field-copy"><div class="kicker">Sur le chantier</div><h2>Votre bureau vous suit sur le terrain.</h2><p>Octave est pensé pour les moments où vous n'êtes pas derrière un ordinateur. Photographiez, mesurez, ajoutez vos informations et retrouvez le dossier correspondant.</p>
-<div class="list"><div><b>✓</b><span>Photos rattachées au chantier</span></div><div><b>✓</b><span>Prise de cote sur place</span></div><div><b>✓</b><span>Documents centralisés</span></div><div><b>✓</b><span>Continuité terrain / bureau</span></div></div></div>
-<div class="mobile-stage"><div class="float a"><strong>Prise de cote</strong>4,20 m × 2,85 m</div><div class="phone"><div class="phone-screen"><img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/capture-mobile.webp" alt="Aperçu de l'application Octave sur mobile"></div></div><div class="float b"><strong>18 photos</strong>Dernière capture · il y a 4 min</div></div>
-</div>
+<!-- 3 ÉTAPES -->
+<section class="sec steps-sec" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Comment ça marche</span>
+      <h2 id="h-steps">Du devis au paiement,<br>en trois étapes.</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <h3>Chiffrez</h3>
+        <p>Créez votre devis depuis votre catalogue, sur ordinateur ou sur le chantier, et envoyez-le par e-mail.</p>
+        <div class="mini"><i class="cu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></i><div><b>Devis DEV-2026-0118 envoyé</b><span>à m.leroy@exemple.fr</span></div></div>
+      </div>
+      <div class="step rv">
+        <h3>Faites valider</h3>
+        <p>Votre client accepte le devis en ligne. Il devient une facture en un clic, sans rien ressaisir.</p>
+        <div class="mini"><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></i><div><b>Devis accepté</b><span>Transformé en facture en un clic</span></div></div>
+      </div>
+      <div class="step rv">
+        <h3>Encaissez</h3>
+        <p>Votre client paie par carte depuis l'e-mail. La facture passe en « Payée » toute seule.</p>
+        <div class="mini"><i class="cu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></i><div><b>Facture payée · 1 280,00 €</b><span>Paiement par carte</span></div></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section section-white">
-<div class="container">
-<div class="kicker">Du devis à la facture</div><h2 style="font-size:clamp(37px,4.5vw,58px);line-height:1.03;margin:13px 0 15px">Une continuité naturelle.</h2>
-<p style="max-width:590px;color:var(--muted);font-size:15px;margin:0 0 45px">Les informations utiles restent au même endroit au lieu d'être recopiées à chaque étape.</p>
-<div class="steps">
-<div class="step"><div class="step-num">01</div><h3>Chiffrer</h3><p>Créez votre devis à partir de vos prestations et de vos prix.</p></div>
-<div class="step"><div class="step-num">02</div><h3>Faire avancer</h3><p>Le projet accepté devient votre espace chantier.</p></div>
-<div class="step"><div class="step-num">03</div><h3>Documenter</h3><p>Photos, prise de cote et documents restent liés au projet.</p></div>
-<div class="step"><div class="step-num">04</div><h3>Facturer</h3><p>Retrouvez les éléments du projet et passez à la facturation.</p></div>
-</div>
-</div>
+<!-- CHANTIER+ -->
+<section class="sec" id="chantier" aria-labelledby="h-ch">
+  <div class="wrap split">
+    <div class="rv">
+      <span class="eyebrow">Chantier+</span>
+      <h2 id="h-ch" style="font-size:clamp(34px,4.4vw,56px);margin:16px 0 18px">Votre chantier,<br>documenté en photos.</h2>
+      <p style="font-size:18px;color:var(--muted);margin:0">Prenez vos photos avant, pendant et après l'intervention, annotez-les, et générez un compte rendu PDF propre à remettre à votre client.</p>
+      <ul class="checks">
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></i><div>Photos rangées par étape<span>Avant, pendant, après : tout est classé dans le bon dossier.</span></div></li>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></i><div>Annotations directement sur l'image<span>Flèches et notes pour montrer ce qui a été fait.</span></div></li>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></i><div>Compte rendu PDF en un clic<span>À vos couleurs, prêt à signer par votre client.</span></div></li>
+      </ul>
+    </div>
+    <div class="board rv" aria-hidden="true">
+      <div class="board-h"><b>Rénovation salle de bain</b><span>12 photos</span></div>
+      <div class="photos">
+        <div class="ph a" data-l="Avant"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 60V35l20-12 18 10 22-18 20 14 20-8v39z" fill="#fff"/></svg></div>
+        <div class="ph b" data-l="Pendant"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 60V28l25 8 20-16 25 14 30-10v36z" fill="#fff"/></svg></div>
+        <div class="ph c" data-l="Après"><svg viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0 60V40l30-14 20 10 22-8 28 12v20z" fill="#fff"/></svg></div>
+      </div>
+      <div class="report">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg></i>
+        <div><b>Compte rendu de chantier.pdf</b><span>Établi avec Cantara · prêt à signer</span></div>
+        <em>Télécharger</em>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section section-dark" id="electronique">
-<div class="container"><div class="dark-content">
-<div class="kicker">Facturation électronique</div><h2>Préparez votre entreprise à la nouvelle facturation.</h2>
-<p>Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Octave est pensé pour faire évoluer votre gestion des factures sans multiplier les outils.</p>
-<div class="billing-logo">
-<img src="https://wvzcizbugoilmlwazlhg.supabase.co/storage/v1/object/public/octave-assets/facturation_logo.webp" alt="Facturation électronique">
-</div>
-<div class="badges"><span class="badge">Facturation électronique</span><span class="badge">Transmission électronique</span><span class="badge">Suivi des statuts</span><span class="badge">Factur-X</span></div>
-</div></div>
+<!-- FACTURATION ÉLECTRONIQUE -->
+<section class="sec einv" id="facturation-electronique" aria-labelledby="h-fe">
+  <div class="wrap" style="position:relative">
+    <div class="head rv">
+      <span class="eyebrow">Facturation électronique</span>
+      <h2 id="h-fe">La réforme arrive.<br>Cantara est prêt.</h2>
+      <p>Avec les forfaits Pro et Équipe, Cantara envoie et reçoit vos factures électroniques au format officiel, via une plateforme agréée par l'administration.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl now rv"><small>1er septembre 2026</small><h3>Réception obligatoire</h3><p>Toutes les entreprises doivent pouvoir recevoir des factures électroniques, y compris les micro-entreprises.</p></div>
+      <div class="tl rv"><small>1er septembre 2027</small><h3>Émission obligatoire</h3><p>Les PME, TPE et micro-entreprises devront émettre leurs factures au format électronique.</p></div>
+      <div class="tl rv"><small>Avec Cantara</small><h3>Rien à changer</h3><p>Vous créez vos factures comme d'habitude. Cantara s'occupe du format Factur-X et de la transmission.</p></div>
+    </div>
+    <p class="src rv">Calendrier officiel : <a href="https://entreprendre.service-public.gouv.fr/actualites/A17450" target="_blank" rel="noopener">service-public.gouv.fr</a></p>
+  </div>
 </section>
 
-<section class="section section-white" id="tarifs">
-<div class="container">
-<div class="section-head"><div><div class="kicker">Des forfaits simples</div><h2>Commencez gratuitement. Évoluez quand vous êtes prêt.</h2></div><p>Des offres lisibles pour passer progressivement d'une gestion essentielle à un véritable espace de travail d'équipe.</p></div>
-<div class="plans">
-<article class="plan"><div class="plan-top"><h3>Octave Gratuit</h3></div><div class="price"><strong>0 €</strong><span>/ mois</span></div><div class="users">1 utilisateur</div><ul><li>Jusqu'à 5 devis et factures au total par mois</li><li>Gestion des clients et du catalogue</li><li>Sans facturation électronique</li><li>Sans photos chantier</li></ul><a class="btn btn-outline" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir ce forfait</a></article>
-<article class="plan pro"><div class="plan-top"><h3>Pro</h3><span class="current">Forfait actuel</span></div><div class="price"><strong>17,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 2 utilisateurs</div><ul><li>Devis et factures illimités</li><li>Facturation électronique via une plateforme agréée</li><li>Photos et relevés de chantier</li><li>Travail en équipe jusqu'à 2 utilisateurs</li></ul><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Choisir Pro <span>→</span></a></article>
-<article class="plan"><div class="plan-top"><h3>Équipe</h3></div><div class="price"><strong>29,99 €</strong><span>/ mois</span></div><div class="users">Jusqu'à 5 utilisateurs</div><ul><li>Toutes les fonctions de Pro</li><li>Travail en équipe jusqu'à 5 utilisateurs</li><li>Pour une petite équipe</li></ul><a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Passer à Équipe <span>→</span></a></article>
-</div>
-<div class="note">Les forfaits payants utilisent Stripe. L'activation et l'historique des factures dépendent de la bonne réception des événements Stripe.</div>
-</div>
+<!-- TARIFS -->
+<section class="sec" id="tarifs" aria-labelledby="h-tarifs">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Tarifs</span>
+      <h2 id="h-tarifs">Commencez gratuitement.<br>Évoluez quand vous voulez.</h2>
+      <p>Des forfaits simples, sans engagement, résiliables à tout moment.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv">
+        <h3>Gratuit</h3>
+        <p class="for">Pour démarrer et découvrir Cantara.</p>
+        <div class="price"><b>0 €</b><span>/ mois</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>1 utilisateur</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>5 devis et factures par mois</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Clients et catalogue</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>1 modèle de facture</li>
+          <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Facturation électronique</li>
+          <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Chantier+</li>
+        </ul>
+        <a class="btn btn-line" href="https://app.cantara-app.fr/?inscription=1">Créer mon compte</a>
+      </div>
+      <div class="plan best rv">
+        <span class="badge">Recommandé</span>
+        <h3>Pro</h3>
+        <p class="for">Pour l'artisan qui facture chaque semaine.</p>
+        <div class="price"><b>17,99 €</b><span>/ mois</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Jusqu'à 2 utilisateurs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Devis et factures illimités</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Tous les modèles de documents</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Facturation électronique</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Chantier+ : photos et comptes rendus</li>
+        </ul>
+        <a class="btn btn-cu" href="https://app.cantara-app.fr/?inscription=1">Commencer avec Pro</a>
+      </div>
+      <div class="plan rv">
+        <h3>Équipe</h3>
+        <p class="for">Pour les petites équipes qui travaillent ensemble.</p>
+        <div class="price"><b>29,99 €</b><span>/ mois</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Jusqu'à 5 utilisateurs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Toutes les fonctions de Pro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Documents assignés à chaque collaborateur</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Planning partagé</li>
+        </ul>
+        <a class="btn btn-dark" href="https://app.cantara-app.fr/?inscription=1">Commencer avec Équipe</a>
+      </div>
+    </div>
+    <p class="plan-note rv">Paiement sécurisé par Stripe. Paiement des factures par carte : commission Cantara de 0,5 % par transaction, en plus des frais Stripe.</p>
+  </div>
 </section>
 
-<section class="section section-silver" id="faq">
-<div class="container"><div class="section-head"><div><div class="kicker">Questions fréquentes</div><h2>Avant de commencer.</h2></div></div>
-<div class="faq">
-<div class="faq-row open"><button class="faq-btn"><span>Octave est-il accessible depuis un smartphone ?</span><span>−</span></button><div class="answer">Oui. L'expérience est pensée pour être utilisée sur ordinateur comme sur les appareils mobiles afin de retrouver les informations utiles au bureau comme sur le terrain.</div></div>
-<div class="faq-row"><button class="faq-btn"><span>Puis-je prendre des photos directement depuis un chantier ?</span><span>+</span></button><div class="answer">Oui. Les photos sont intégrées au dossier du chantier afin de conserver une trace organisée de vos interventions et de l'avancement.</div></div>
-<div class="faq-row"><button class="faq-btn"><span>La prise de cote est-elle intégrée au suivi du chantier ?</span><span>+</span></button><div class="answer">Oui. Les mesures sont conservées avec les autres informations du projet pour limiter les oublis et les allers-retours.</div></div>
-<div class="faq-row"><button class="faq-btn"><span>Octave est-il compatible avec la facturation électronique ?</span><span>+</span></button><div class="answer">Le forfait Pro prévoit la facturation électronique via une plateforme agréée. Les modalités précises dépendent de la configuration du service et du dispositif retenu.</div></div>
-<div class="faq-row"><button class="faq-btn"><span>Quel forfait choisir pour commencer ?</span><span>+</span></button><div class="answer">Le forfait Gratuit permet de découvrir Octave. Pro convient à une activité qui facture régulièrement et souhaite les fonctions chantier et la facturation électronique. Équipe ajoute le travail jusqu'à 5 utilisateurs.</div></div>
-</div></div>
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2 id="h-faq">Tout ce que vous<br>voulez savoir.</h2>
+    </div>
+    <div class="faq rv">
+      <details open><summary>Le forfait Gratuit est-il vraiment gratuit ?</summary><p>Oui. Le forfait Gratuit est à 0 € par mois, sans limite de durée et sans carte bancaire. Il comprend 5 devis et factures par mois pour un utilisateur. Vous passez à Pro seulement si vous en avez besoin.</p></details>
+      <details><summary>Mes factures sont-elles conformes à la loi ?</summary><p>Cantara applique une numérotation continue qui ne peut plus être modifiée une fois la facture émise, ajoute les mentions obligatoires et corrige les erreurs par avoir, comme l'exige la réglementation. Les cas de TVA courants sont gérés : franchise en base, autoliquidation dans le BTP, clients européens.</p></details>
+      <details><summary>Suis-je concerné par la facturation électronique ?</summary><p>Oui : toutes les entreprises doivent pouvoir recevoir des factures électroniques à partir du 1er septembre 2026, et les PME, TPE et micro-entreprises devront les émettre à partir du 1er septembre 2027. Avec les forfaits Pro et Équipe, Cantara s'en occupe via une plateforme agréée.</p></details>
+      <details><summary>Comment mes clients paient-ils par carte ?</summary><p>Vous connectez votre compte Stripe en quelques minutes depuis Cantara. Vos factures et e-mails affichent alors un bouton « Payer ma facture », et l'argent arrive directement sur votre compte. Une commission de 0,5 % par transaction s'ajoute aux frais Stripe.</p></details>
+      <details><summary>Puis-je utiliser Cantara sur mon téléphone ?</summary><p>Oui. Cantara fonctionne sur ordinateur, tablette et téléphone, directement dans le navigateur. Créez un devis, prenez une photo de chantier ou vérifiez un paiement où que vous soyez.</p></details>
+      <details><summary>Où sont stockées mes données ?</summary><p>Vos données sont hébergées en Europe (Irlande). Vous pouvez exporter vos documents et vos données comptables à tout moment.</p></details>
+      <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui, les forfaits sont sans engagement. Vous résiliez en un clic depuis votre compte : l'abonnement s'arrête à la fin de la période en cours.</p></details>
+    </div>
+  </div>
 </section>
 
-<section class="cta">
-<div class="container"><div class="cta-box">
-<div class="kicker">Prêt à passer à Octave ?</div>
-<h2>Faites moins d'administratif. Faites plus de terrain.</h2>
-<p>Commencez gratuitement et découvrez une gestion plus simple de vos devis, factures et chantiers.</p>
-<a class="btn btn-copper" href="https://app.octave-app.fr/" target="_blank" rel="noopener">Commencer gratuitement <span>→</span></a>
-<div class="cta-small">Inscription · configuration de votre entreprise · prise en main</div>
-</div></div>
+<!-- CTA FINAL -->
+<section class="final" aria-labelledby="h-final">
+  <div class="wrap">
+    <div class="box rv">
+      <h2 id="h-final">Prêt à être payé plus vite ?</h2>
+      <p>Créez votre compte en une minute et envoyez votre premier devis aujourd'hui.</p>
+      <div class="ctas">
+        <a class="btn btn-cu" href="https://app.cantara-app.fr/?inscription=1">Commencer gratuitement
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="https://app.cantara-app.fr/">J'ai déjà un compte</a>
+      </div>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer class="footer">
-<div class="container footer-inner">
-<div><span class="footer-logo">Octave</span> · Gestion d'entreprise & chantiers</div>
-<div class="footer-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#chantier">Chantier</a><a href="#electronique">Facturation électronique</a><a href="#tarifs">Tarifs</a><a href="https://app.octave-app.fr/" target="_blank" rel="noopener">S'inscrire</a><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a><a href="cookies.html">Cookies</a><a href="cgu.html">CGU</a><a href="cgv.html">CGV</a><a href="contact.html">Contact</a></div>
-<div>© 2026 Octave</div>
-</div>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/assets/cantara-logo-blanc.webp" alt="Cantara" width="130" height="32">
+        <p style="margin:0;max-width:300px">Devis, factures, paiement en ligne et suivi de chantier pour les artisans et indépendants.</p>
+      </div>
+      <div><h4>Produit</h4><ul><li><a href="#avantages">Avantages</a></li><li><a href="#chantier">Chantier+</a></li><li><a href="#facturation-electronique">Facturation électronique</a></li><li><a href="#tarifs">Tarifs</a></li></ul></div>
+      <div><h4>Compte</h4><ul><li><a href="https://app.cantara-app.fr/">Se connecter</a></li><li><a href="https://app.cantara-app.fr/?inscription=1">Créer un compte</a></li><li><a href="/contact.html">Contact</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Légal</h4><ul><li><a href="/mentions-legales.html">Mentions légales</a></li><li><a href="/cgu.html">CGU</a></li><li><a href="/cgv.html">CGV</a></li><li><a href="/confidentialite.html">Confidentialité</a></li><li><a href="/cookies.html">Cookies</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Cantara · Astro Vision</span><span>Fait en France 🇫🇷</span></div>
+  </div>
 </footer>
+
 <script>
-document.querySelectorAll(".faq-btn").forEach(btn=>{
- btn.addEventListener("click",()=>{
-  const row=btn.closest(".faq-row");
-  const willOpen=!row.classList.contains("open");
-  document.querySelectorAll(".faq-row").forEach(r=>{
-   r.classList.remove("open");
-   r.querySelector(".faq-btn span:last-child").textContent="+";
-  });
-  if(willOpen){row.classList.add("open");btn.querySelector("span:last-child").textContent="−";}
- });
-});
+(function(){
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('scrolled',window.scrollY>10);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  var burger=document.querySelector('.burger'),mnav=document.getElementById('mnav');
+  burger.addEventListener('click',function(){var o=mnav.classList.toggle('open');burger.setAttribute('aria-expanded',o);top.classList.add('scrolled');});
+  mnav.addEventListener('click',function(e){if(e.target.tagName==='A'){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('in');});}
+})();
 </script>
 </body>
 </html>
